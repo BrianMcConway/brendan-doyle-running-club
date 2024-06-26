@@ -31,7 +31,7 @@
     right: 0;
     z-index: 10;
     width: auto;
-    height: calc(100% - 3px);
+    height: 100%;
     content: "−";
     font-size: 16px;
     font-weight: lighter;
