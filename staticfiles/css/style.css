@@ -1,12 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500&family=Lato:wght@300&family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: Kanit, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #333;
+    background-color: #65EB5E;
     color: #fff;
     padding: 10px 0;
     text-align: center;
@@ -32,17 +37,20 @@ h1 {
 }
 
 p {
-    color: #666;
+    font-family: Kanit, sans-serif;
+    color: #fff;
+}
+
+main {
+    flex: 1;
 }
 
 footer {
-    background-color: #333;
+    background-color: #65EB5E;
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
     width: 100%;
-    bottom: 0;
 }
 
 .social-icons {
@@ -57,7 +65,7 @@ footer {
 }
 
 .social-icons a:hover {
-    color: #ddd;
+    color: #dae4da;
 }
 
 /* Form styles */
@@ -79,8 +87,8 @@ label {
     display: inline-block;
     width: 90px;
     text-align: right;
+    color: #333;
 }
-
 input, textarea {
     font: 1em sans-serif;
     width: 300px;
