@@ -11,21 +11,11 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
 
 class CustomSignupView(SignupView):
     def form_valid(self, form):
-        try:
-            response = super().form_valid(form)
-            user = form.save(self.request)
-            print(f"DEBUG: Created user: {user.username}")
-            user.is_active = True
-            user.save()
-            return redirect(self.get_success_url())
-        except IntegrityError as e:
-            print(f"DEBUG: IntegrityError: {e}")
-            form.add_error(None, "A user with that username already exists.")
-            return self.form_invalid(form)
-        except Exception as e:
-            print(f"DEBUG: Other Exception: {e}")
-            form.add_error(None, "An unexpected error occurred.")
-            return self.form_invalid(form)
+        response = super().form_valid(form)
+        user = self.user
+        user.is_active = True
+        user.save()
+        return redirect(self.get_success_url())
 
     def get_success_url(self):
         return reverse('my_members')
