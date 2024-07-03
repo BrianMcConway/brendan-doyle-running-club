@@ -76,7 +76,7 @@ form {
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #0000001a;
 }
 
 form div + div {
@@ -107,22 +107,14 @@ textarea {
     height: 5em;
 }
 
-.button {
-    padding-left: 90px; 
+.btn-primary {
+    background-color: #28a745; 
+    border-color: #28a745;
 }
 
-button {
-    margin-left: .5em;
-    padding: 0.5em 1em;
-    color: #fff;
-    background-color: #333;
-    border: none;
-    border-radius: 0.25em;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
+.btn-primary:hover {
+    background-color: #218838; 
+    border-color: #1e7e34;
 }
 
 .logout-text {
