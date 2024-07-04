@@ -17,17 +17,17 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from home import views as home_views
 from members.views import CustomSignupView, CustomLoginView, MyMembersView, custom_logout_view
 
 urlpatterns = [
-    path('', include('home.urls')),
-    path('members/', MyMembersView.as_view(), name='my_members'),
     path('admin/', admin.site.urls),
+    path('members/', MyMembersView.as_view(), name='my_members'),
     path('account/signup/', CustomSignupView.as_view(), name='account_signup'),
     path('account/login/', CustomLoginView.as_view(), name='account_login'),
     path('account/logout/', custom_logout_view, name='account_logout'),
     path('account/', include('allauth.urls')),
+    path('', include('home.urls')),
 ]
+
 
 

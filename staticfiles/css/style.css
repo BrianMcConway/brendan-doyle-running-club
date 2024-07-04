@@ -38,7 +38,7 @@ h1 {
 
 p {
     font-family: Kanit, sans-serif;
-    color: #ffff;
+    color: #000000;
 }
 
 main {
@@ -79,8 +79,12 @@ form {
     box-shadow: 0 0 10px #0000001a;
 }
 
-form div + div {
-    margin-top: 1em;
+form .form-group {
+    margin-bottom: 1rem;
+}
+
+form .btn {
+    margin-top: 1rem;
 }
 
 label {
@@ -89,6 +93,7 @@ label {
     text-align: left;
     color: #333;
 }
+
 input, textarea {
     font: 1em Kanit, sans-serif;
     max-width: 100%;
