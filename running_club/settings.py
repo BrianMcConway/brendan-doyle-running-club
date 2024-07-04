@@ -51,7 +51,6 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 SITE_ID = 1
 
@@ -85,6 +84,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 
 AUTHENTICATION_BACKENDS = [
