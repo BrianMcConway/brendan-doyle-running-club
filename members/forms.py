@@ -5,6 +5,10 @@ from crispy_forms.layout import Layout, Submit
 class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Remove the 'remember' field
+        if 'remember' in self.fields:
+            del self.fields['remember']
+        # Customize the layout if using crispy forms
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'login',
@@ -15,6 +19,10 @@ class CustomLoginForm(LoginForm):
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Remove the help text for all fields
+        for field in self.fields.values():
+            field.help_text = ''
+        # Customize the layout if using crispy forms
         self.helper = FormHelper()
         self.helper.layout = Layout(
             'username',

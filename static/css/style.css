@@ -69,20 +69,47 @@ footer {
 }
 
 /* Form styles */
-.form-group {
-    margin-top: 1em;
+form {
+    width: 300px;
+    max-width: 90%;
+    padding: 1em;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    box-shadow: 0 0 10px #0000001a;
 }
 
-.form-group a {
-    display: block;
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: none;
+form .form-group {
+    margin-bottom: 1rem;
 }
 
-.form-group a:hover {
-    color: #0056b3;
-    text-decoration: underline;
+form .btn {
+    margin-top: 1rem;
+}
+
+label {
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+    color: #333;
+}
+
+input, textarea {
+    font: 1em Kanit, sans-serif;
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    padding: 0.5em;
+    border-radius: 0.25em;
+}
+
+input:focus, textarea:focus {
+    border-color: #000;
+}
+
+textarea {
+    vertical-align: top;
+    height: 5em;
 }
 
 .btn-primary {
