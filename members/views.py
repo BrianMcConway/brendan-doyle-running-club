@@ -32,3 +32,4 @@ def custom_logout_view(request):
     from django.contrib.auth import logout
     logout(request)
     return redirect('home')
+    

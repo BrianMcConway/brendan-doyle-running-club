@@ -69,55 +69,33 @@ footer {
 }
 
 /* Form styles */
-form {
-    width: 300px;
-    max-width: 90%;
-    padding: 1em;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-    box-shadow: 0 0 10px #0000001a;
+.form-group {
+    margin-bottom: 15px;
 }
 
-form .form-group {
-    margin-bottom: 1rem;
-}
-
-form .btn {
-    margin-top: 1rem;
-}
-
-label {
-    display: inline-block;
-    width: 90%;
-    text-align: left;
-    color: #333;
-}
-
-input, textarea {
-    font: 1em Kanit, sans-serif;
-    max-width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #999;
-    padding: 0.5em;
-    border-radius: 0.25em;
-}
-
-input:focus, textarea:focus {
-    border-color: #000;
-}
-
-textarea {
-    vertical-align: top;
-    height: 5em;
+.form-control {
+    max-width: 300px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .btn-primary {
-    background-color: #28a745; 
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #28a745;
     border-color: #28a745;
+    margin-top: 10px;
 }
 
 .btn-primary:hover {
-    background-color: #218838; 
+    background-color: #218838;
     border-color: #1e7e34;
+}
+
+
+.password-reset {
+    color: #000;
 }
