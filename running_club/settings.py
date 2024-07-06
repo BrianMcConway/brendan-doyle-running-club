@@ -167,3 +167,8 @@ CSRF_TRUSTED_ORIGINS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = os.environ.get('MAILTRAP_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILTRAP_PASSWORD')
+EMAIL_PORT = '2525'
