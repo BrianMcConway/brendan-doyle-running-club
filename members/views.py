@@ -3,7 +3,8 @@ from allauth.account.views import SignupView, LoginView
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from .forms import CustomSignupForm, CustomLoginForm
+from django.contrib.auth.views import PasswordResetConfirmView
+from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm
 
 class MyMembersView(LoginRequiredMixin, TemplateView):
     template_name = 'members/members.html'
@@ -32,4 +33,7 @@ def custom_logout_view(request):
     from django.contrib.auth import logout
     logout(request)
     return redirect('home')
-    
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    form_class = CustomSetPasswordForm
+    template_name = 'account/password_reset_confirm.html'

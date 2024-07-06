@@ -1,14 +1,14 @@
-from allauth.account.forms import LoginForm, SignupForm
+from django import forms
+from allauth.account.forms import LoginForm, SignupForm, SetPasswordForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field, Div
+import logging
 
 class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Remove the 'remember' field
         if 'remember' in self.fields:
             del self.fields['remember']
-        # Customize the layout using crispy forms
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(
@@ -20,17 +20,14 @@ class CustomLoginForm(LoginForm):
         )
 
     def login(self, request, redirect_url=None):
-        # Override the login method to avoid accessing 'remember' field
         self.cleaned_data['remember'] = False
         return super().login(request, redirect_url)
 
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Remove help text
         self.fields['password1'].help_text = None
         self.fields['password2'].help_text = None
-        # Customize the layout using crispy forms
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Div(
@@ -42,3 +39,29 @@ class CustomSignupForm(SignupForm):
                 css_class='form-group'
             )
         )
+
+class CustomSetPasswordForm(SetPasswordForm):
+    new_password1 = forms.CharField(
+        label="New password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+    new_password2 = forms.CharField(
+        label="Confirm new password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+    )
+
+    def __init__(self, *args, **kwargs):
+        logging.debug("Initializing CustomSetPasswordForm")
+        super().__init__(*args, **kwargs)
+        logging.debug("Form fields: %s", self.fields)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Div(
+                Field('new_password1', css_class='form-control'),
+                Field('new_password2', css_class='form-control'),
+                Submit('set_password', 'Set Password', css_class='btn btn-primary'),
+                css_class='form-group'
+            )
+        )
+        logging.debug("Form helper set up")

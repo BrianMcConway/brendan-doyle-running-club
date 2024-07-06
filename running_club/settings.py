@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
 
@@ -47,10 +47,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
-    'crispy_bootstrap4',
+    'crispy_bootstrap5',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 SITE_ID = 1
 
