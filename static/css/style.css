@@ -2,7 +2,7 @@
 
 body {
     font-family: Kanit, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #115a38e8;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,11 +10,25 @@ body {
     min-height: 100vh;
 }
 
-header {
-    background-color: #65EB5E;
-    color: #fff;
+/* Header styles */
+.header {
+    background-color: #115a38e8;
     padding: 10px 0;
     text-align: center;
+}
+
+.header h1 {
+    color: #ffffff;
+    font-family: Kanit, sans-serif;
+}
+
+.navbar .nav-link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .nav-link:hover {
+    color: #dae4da; /* Change color on hover */
 }
 
 nav ul {
@@ -24,7 +38,7 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 10px;
+    margin-right: 50px;
 }
 
 nav ul li a {
@@ -32,40 +46,67 @@ nav ul li a {
     text-decoration: none;
 }
 
-h1 {
-    color: #ffffff;
-}
-
-p {
-    font-family: Kanit, sans-serif;
-    color: #ffff;
-}
-
+/* Main content styles */
 main {
     flex: 1;
 }
 
-footer {
-    background-color: #65EB5E;
+/* Footer styles */
+.footer {
+    background-color: #dadddae8;
     color: #fff;
     text-align: center;
     padding: 10px 0;
     width: 100%;
+    margin-top: auto; /* Ensures footer is at the bottom */
 }
 
+.footer-text {
+    margin-bottom: 0; /* Ensures the text is closer to the bottom */
+    font-family: Kanit, sans-serif;
+    color: #000;
+}
+
+/* Forgot password link styles */
+#id_password_helptext a {
+    color: #dadddae8
+}
+
+/* Social icons styles */
 .social-icons {
     margin: 10px 0;
+    display: flex;
+    justify-content: center;
 }
 
 .social-icons a {
-    color: #fff;
-    margin: 0 10px;
+    margin: 0 100px; /* Increase spacing between icons */
     font-size: 24px;
     text-decoration: none;
+    transition: transform 0.5s ease; /* Smooth transition */
 }
 
+/* Scale the icon on hover */
 .social-icons a:hover {
-    color: #dae4da;
+    transform: scale(2);
+}
+
+.fa-facebook {
+    color: #1877F2;
+}
+
+.fa-instagram {
+    background: linear-gradient(45deg, #e91a1a, #e29e3f, #833AB4, #C13584);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.fa-x-twitter {
+    color: #000000;
+}
+
+.fa-strava {
+    color: #FC4C02;
 }
 
 /* Form styles */
@@ -85,17 +126,32 @@ footer {
     max-width: 300px;
     padding: 10px;
     font-size: 16px;
-    background-color: #28a745;
-    border-color: #28a745;
+    background-color: #115a38e8;
+    border-color: #115a38e8;
     margin-top: 10px;
 }
 
 .btn-primary:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
+    background-color: #115a38e8;
+    border-color: #115a38e8;
 }
 
 
-.password-reset {
-    color: #000;
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    nav ul li {
+        margin-right: 15px; /* Adjust margin for smaller screens */
+    }
+
+    .social-icons a {
+        margin: 0 10px; /* Adjust margin for smaller screens */
+    }
+    
+    .header, .footer {
+        padding: 5px 0; /* Adjust padding for smaller screens */
+    }
+
+    .footer-text {
+        font-size: 14px; /* Adjust text size for smaller screens */
+    }
 }
