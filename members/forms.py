@@ -2,7 +2,6 @@ from django import forms
 from allauth.account.forms import LoginForm, SignupForm, SetPasswordForm
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Field, Div
-import logging
 
 class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
@@ -51,9 +50,7 @@ class CustomSetPasswordForm(SetPasswordForm):
     )
 
     def __init__(self, *args, **kwargs):
-        logging.debug("Initializing CustomSetPasswordForm")
         super().__init__(*args, **kwargs)
-        logging.debug("Form fields: %s", self.fields)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -64,4 +61,3 @@ class CustomSetPasswordForm(SetPasswordForm):
                 css_class='form-group'
             )
         )
-        logging.debug("Form helper set up")
