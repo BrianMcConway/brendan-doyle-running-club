@@ -156,3 +156,26 @@ main {
         font-size: 14px; /* Adjust text size for smaller screens */
     }
 }
+
+@media (hover: none) {
+    .social-icons a {
+        transform: scale(1); /* Ensure default scale */
+    }
+}
+
+/* Disable hover effects for touchscreens */
+@media (hover: none) {
+    .social-icons a {
+        transform: scale(1); /* Ensure default scale */
+    }
+    .social-icons a:hover {
+        transform: none; /* Disable hover scale for touchscreens */
+    }
+}
+
+/* Enable hover effects for non-touchscreens */
+@media (hover: hover) and (pointer: fine) {
+    .social-icons a:hover {
+        transform: scale(2); /* Scale up on hover for non-touchscreens */
+    }
+}
