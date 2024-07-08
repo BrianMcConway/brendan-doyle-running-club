@@ -31,6 +31,10 @@ body {
     color: #dae4da; /* Change color on hover */
 }
 
+.navbar .nav-link.active {
+    color: yellow;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -51,6 +55,12 @@ main {
     flex: 1;
 }
 
+/* Profile details styles */
+.profile-details {
+    text-align: left;
+    padding: 10px;
+}
+
 /* Footer styles */
 .footer {
     background-color: #dadddae8;
@@ -69,7 +79,7 @@ main {
 
 /* Forgot password link styles */
 #id_password_helptext a {
-    color: #dadddae8
+    color: #dadddae8;
 }
 
 /* Social icons styles */
@@ -161,19 +171,11 @@ main {
     .social-icons a {
         transform: scale(1); /* Ensure default scale */
     }
-}
-
-/* Disable hover effects for touchscreens */
-@media (hover: none) {
-    .social-icons a {
-        transform: scale(1); /* Ensure default scale */
-    }
     .social-icons a:hover {
         transform: none; /* Disable hover scale for touchscreens */
     }
 }
 
-/* Enable hover effects for non-touchscreens */
 @media (hover: hover) and (pointer: fine) {
     .social-icons a:hover {
         transform: scale(2); /* Scale up on hover for non-touchscreens */

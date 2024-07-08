@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
 
-{% load static %}
-
-{% block title %}members{% endblock %}
+{% block title %}Members Area{% endblock %}
 
 {% block content %}
-
-<h2>Welcome to the members area</h2>
-
+<div class="container">
+    <h2>Members Area</h2>
+    <p>Welcome to the members area. Here you can manage your profile and access club-related materials.</p>
+</div>
 {% endblock %}
