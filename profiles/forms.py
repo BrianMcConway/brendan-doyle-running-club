@@ -5,23 +5,6 @@ from crispy_forms.layout import Layout, Submit, Field, Div
 from django.contrib.auth.models import User
 from .models import Profile
 
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['bio'] 
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_method = 'post'
-        self.helper.layout = Layout(
-            Div(
-                Field('bio', css_class='form-control'),
-                Submit('save', 'Save', css_class='btn btn-primary'),
-                css_class='form-group'
-            )
-        )
-
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
@@ -38,6 +21,22 @@ class UserForm(forms.ModelForm):
                 Field('first_name', css_class='form-control'),
                 Field('last_name', css_class='form-control'),
                 Field('email', css_class='form-control'),
+                Submit('save', 'Save', css_class='btn btn-primary'),
+                css_class='form-group'
+            )
+        )
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = []  # No fields for now
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.layout = Layout(
+            Div(
                 Submit('save', 'Save', css_class='btn btn-primary'),
                 css_class='form-group'
             )
