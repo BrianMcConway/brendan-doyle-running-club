@@ -1,19 +1,17 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from .models import Profile
 
-class UserProfileSignals:
-    @staticmethod
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
 
-    @staticmethod
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        try:
-            instance.profile.save()
-        except Profile.DoesNotExist:
-            Profile.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
+@receiver(post_delete, sender=Profile)
+def delete_user(sender, instance, **kwargs):
+    instance.user.delete()
