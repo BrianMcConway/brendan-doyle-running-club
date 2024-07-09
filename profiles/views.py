@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from .models import Profile
-from .forms import ProfileForm, UserForm
+from .forms import ProfileForm, UserForm, CustomPasswordChangeForm
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
@@ -74,7 +74,8 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
         return get_object_or_404(Profile, user=self.request.user)
 
     def delete(self, request, *args, **kwargs):
-        user = request.user
-        self.get_object().delete()
+        user = self.request.user
+        profile = self.get_object()
+        profile.delete()
         user.delete()
         return redirect(self.success_url)

@@ -13,6 +13,8 @@ class UserForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].help_text = None  # Remove help text for username
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -21,15 +23,15 @@ class UserForm(forms.ModelForm):
                 Field('first_name', css_class='form-control'),
                 Field('last_name', css_class='form-control'),
                 Field('email', css_class='form-control'),
-                Submit('save', 'Save', css_class='btn btn-primary'),
                 css_class='form-group'
-            )
+            ),
+            Submit('save', 'Save', css_class='btn btn-primary')
         )
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = []  # No fields for now
+        fields = []
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -37,9 +39,9 @@ class ProfileForm(forms.ModelForm):
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
             Div(
-                Submit('save', 'Save', css_class='btn btn-primary'),
                 css_class='form-group'
-            )
+            ),
+            Submit('save', 'Save', css_class='btn btn-primary')
         )
 
 class CustomPasswordChangeForm(PasswordChangeForm):
@@ -47,7 +49,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         super().__init__(*args, **kwargs)
         for field_name in ['old_password', 'new_password1', 'new_password2']:
             self.fields[field_name].help_text = None
-            self.fields[field_name].widget.attrs.update({'class': 'form-control'})
+            self.fields[field_name].widget.attrs.update({'class': 'form-control', 'autocomplete': 'off'})
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -55,7 +57,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
                 Field('old_password', css_class='form-control'),
                 Field('new_password1', css_class='form-control'),
                 Field('new_password2', css_class='form-control'),
-                Submit('change_password', 'Change Password', css_class='btn btn-primary'),
                 css_class='form-group'
-            )
+            ),
+            Submit('change_password', 'Change Password', css_class='btn btn-primary')
         )
