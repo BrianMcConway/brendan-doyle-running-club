@@ -147,8 +147,18 @@ main {
     border-color: #115a38e8;
 }
 
+/* Podcast card styling */
+.card-scale .card-body {
+    font-size: 0.75rem; /* Smaller text */
+}
 
-/* Media Queries for Responsiveness */
+.card-scale .btn {
+    font-size: 0.7rem; /* Smaller button text */
+    padding: 0.3rem 0.6rem; /* Smaller button padding */
+}
+
+
+/* Media Queries for responsiveness */
 @media (max-width: 768px) {
     nav ul li {
         margin-right: 15px; /* Adjust margin for smaller screens */
@@ -175,9 +185,9 @@ main {
         transform: none; /* Disable hover scale for touchscreens */
     }
 }
-
+/* Scale up on hover for non-touchscreens */
 @media (hover: hover) and (pointer: fine) {
     .social-icons a:hover {
-        transform: scale(2); /* Scale up on hover for non-touchscreens */
+        transform: scale(2); 
     }
 }
