@@ -167,6 +167,10 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.herokuapp.com",
 ]
 
+CSRF_COOKIE_HTTPONLY = True # When set to True, this setting makes the CSRF cookie inaccessible to JavaScript, which enhances security.
+CSRF_COOKIE_SECURE = True  # Set to True for Production
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -183,3 +187,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
+HANDLER404 = 'my_app.views.custom_404_view'
+HANDLER500 = 'my_app.views.custom_500_view'
+HANDLER403 = 'my_app.views.custom_403_view'

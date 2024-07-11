@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from allauth.account.views import SignupView, LoginView
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -37,3 +37,12 @@ def custom_logout_view(request):
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     form_class = CustomSetPasswordForm
     template_name = 'account/password_reset_confirm.html'
+
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
+
+def custom_500_view(request):
+    return render(request, '500.html', status=500)
+
+def custom_403_view(request, exception):
+    return render(request, '403.html', status=403)
