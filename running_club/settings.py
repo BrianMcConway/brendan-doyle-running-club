@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
 
@@ -168,7 +168,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 CSRF_COOKIE_HTTPONLY = True # When set to True, this setting makes the CSRF cookie inaccessible to JavaScript, which enhances security.
-CSRF_COOKIE_SECURE = True  # Set to True for Production
+CSRF_COOKIE_SECURE = False  # Set to True for Production
 
 
 # Default primary key field type
