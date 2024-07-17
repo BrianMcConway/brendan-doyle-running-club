@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
 
@@ -168,8 +168,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.herokuapp.com",
 ]
 
-#CSRF_COOKIE_HTTPONLY = True # When set to True, this setting makes the CSRF cookie inaccessible to JavaScript, which enhances security.
-#CSRF_COOKIE_SECURE = True  # Set to True for Production
+CSRF_COOKIE_HTTPONLY = True # When set to True, this setting makes the CSRF cookie inaccessible to JavaScript, which enhances security.
+CSRF_COOKIE_SECURE = True  # Set to True for Production
 
 
 # Default primary key field type
@@ -177,10 +177,14 @@ CSRF_TRUSTED_ORIGINS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_HOST_USER = os.environ.get('MAILTRAP_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('MAILTRAP_PASSWORD')
-EMAIL_PORT = '2525'
+EMAIL_BACKEND = 'django_ses.SESBackend'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_SES_REGION_NAME = 'eu-west-1'  
+AWS_SES_REGION_ENDPOINT = 'email.eu-west-1.amazonaws.com' 
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+
+PASSWORD_RESET_TIMEOUT = 3600  # 1 hour
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
