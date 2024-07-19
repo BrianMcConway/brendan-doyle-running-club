@@ -8,56 +8,17 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    position: relative; /* Ensure body is positioned for hero-background */
 }
-
-.hero-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Ensure it is behind all content */
-}
-
-.hero-background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1720694645/canal-run_suv7qw.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0; /* Ensure the image is below the gradient overlays */
-}
-
-/* More intense gradient overlay to create a stronger fade to transparency towards the bottom left corner */
-.hero-background::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(216, 231, 224, 0.5); /* Adjust the 0.5 value for desired opacity */
-    z-index: 1;
-}
-
-@media (max-width: 768px) {
-    .hero-background::before {
-        background-position: 75%; /* Adjust these values as needed */
-    }
-}
-
 
 /* Header styles */
 .header {
     background-color: #115a38e8;
     padding: 10px 0;
     text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .header h1 {
@@ -96,6 +57,7 @@ nav ul li a {
 /* Main content styles */
 main {
     flex: 1;
+    padding-top: 60px; /* Adjust this value if your header height changes */
 }
 
 /* Profile details styles */
@@ -232,4 +194,38 @@ main {
     .social-icons a:hover {
         transform: scale(2); 
     }
+}
+
+/* Background styles for each page */
+.background-section::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.home-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1720694645/canal-run_suv7qw.jpg');
+    background-color: rgba(216, 231, 224, 0.5);
+}
+
+.about-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721301704/bdr-12_wzzlyw.jpg');
+    background-color: rgba(216, 231, 224, 0.5);
+}
+
+.classes-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721301424/bdr-1_g19esa.jpg');
+    background-color: rgba(216, 231, 224, 0.5);
+}
+
+.contact-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721301425/bdr-8_n8jv6q.jpg');
+    background-color: rgba(216, 231, 224, 0.5);
 }

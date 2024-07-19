@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
 
@@ -176,13 +176,6 @@ CSRF_COOKIE_SECURE = True  # Set to True for Production
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-EMAIL_BACKEND = 'django_ses.SESBackend'
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_SES_REGION_NAME = 'eu-west-1'  
-AWS_SES_REGION_ENDPOINT = 'email.eu-west-1.amazonaws.com' 
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
 
 PASSWORD_RESET_TIMEOUT = 3600  # 1 hour
 
