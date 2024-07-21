@@ -67,24 +67,31 @@ main {
 .profile-details {
     padding: 20px;
     border-radius: 8px;
-    max-width: 600px;
+    max-width: 100%; /* Allow it to take full width */
     color: #eef3ec;
+    text-align: center; /* Center text for better readability on small screens */
+    word-wrap: break-word; /* Ensure long words wrap */
 }
 
 .profile-buttons {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px; /* Space between buttons for small screens */
 }
 
-.profile-buttons .btn {
-    height: 40px;
-    flex: 1;
-    margin: 0 5px;
-}
+@media (min-width: 768px) {
+    .profile-buttons {
+        flex-direction: row;
+        gap: 0;
+    }
 
-.profile-buttons .btn-danger {
-    margin-left: 10px;
+    .profile-buttons .btn {
+        margin: 0 5px;
+    }
+
+    .profile-buttons .btn-danger {
+        margin-left: 10px;
+    }
 }
 
 /* Footer styles */
@@ -95,6 +102,7 @@ main {
     padding: 10px 0;
     width: 100%;
     margin-top: auto;
+    flex-shrink: 0; /* Ensure footer stays at the bottom */
 }
 
 .footer-text {
@@ -147,13 +155,17 @@ main {
 
 /* Form styles */
 .form-container {
-    background-color: rgba(77, 77, 77, 0.8); /* Slightly transparent background */
-    padding: 20px;
+    background-color: #4d4d4dcc; /* Slightly transparent background */
+    padding: 10px; /* Reduced padding */
     border-radius: 10px;
-    max-width: 600px;
-    margin: 20px auto; /* Center the form container */
+    max-width: 450px; /* Reduced max-width */
+    margin: 10px auto; /* Center the form container and reduce margin */
     color: #fff;
     text-align: center; /* Center text within the form */
+}
+
+.form-container h2 {
+    font-size: 1.25rem; /* Adjust heading size */
 }
 
 .form-container form {
@@ -163,30 +175,33 @@ main {
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 8px; /* Reduce margin between form groups */
     width: 100%; /* Ensure form-group takes full width */
 }
 
 .form-control {
     max-width: 100%;
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    padding: 6px; /* Reduce padding */
+    font-size: 12px; /* Reduce font size */
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-.btn-primary {
+.btn {
     width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #115a38;
-    border: none;
-    margin-top: 10px;
-    color: #fff;
+    max-width: 200px; /* Reduce max-width */
+    padding: 6px; /* Reduce padding */
+    font-size: 12px; /* Reduce font size */
+    margin-top: 6px; /* Reduce top margin */
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #115a38;
+    border: none;
+    color: #fff;
 }
 
 .btn-primary:hover {
@@ -194,16 +209,9 @@ main {
 }
 
 .btn-danger {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 16px;
     background-color: #dc3545;
     border: none;
-    margin-top: 10px;
     color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .btn-danger:hover {
@@ -211,20 +219,23 @@ main {
 }
 
 .btn-secondary {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 16px;
     background-color: #777;
     border: none;
-    margin-top: 10px;
     color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .btn-secondary:hover {
     background-color: #555;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 /* Media queries for responsive design */
@@ -278,6 +289,7 @@ main {
 .home-section::before {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1720694645/canal-run_suv7qw.jpg');
     background-color: #d8e7e0;
+    background-position: center top 20%;
     opacity: 0.5;
 }
 
@@ -289,8 +301,9 @@ main {
 }
 
 .classes-section::before {
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721301424/bdr-1_g19esa.jpg');
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561340/brendan-doyle-solo_y3eeci.jpg');
     background-color: #d8e7e0;
+    background-position: center top 28%;
     opacity: 0.5;
 }
 
@@ -313,5 +326,6 @@ main {
     background-size: cover;
     background-position: center top 20%;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     z-index: -1;
 }
