@@ -5,13 +5,15 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="my-4">Login</h2>
-    <form method="POST" action="{% url 'account_login' %}" class="needs-validation" novalidate>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Login</button>
-        </div>
-    </form>
+    <div class="form-container">
+        <h2 class="my-4">Login</h2>
+        <form method="POST" action="{% url 'account_login' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -3,6 +3,10 @@
 {% block title %}Logout{% endblock %}
 
 {% block content %}
-<h2>Logout</h2>
-<p class="logout-text">You have been successfully logged out. <a href="{% url 'home' %}">Return to homepage</a></p>
+<div class="container profile-section">
+    <div class="form-container">
+        <h2>Logout</h2>
+        <p class="logout-text">You have been successfully logged out. <a href="{% url 'home' %}">Return to homepage</a></p>
+    </div>
+</div>
 {% endblock %}

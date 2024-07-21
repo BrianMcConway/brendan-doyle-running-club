@@ -9,6 +9,12 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
+        widgets = {
+            'username': forms.TextInput(attrs={'autocomplete': 'username'}),
+            'first_name': forms.TextInput(attrs={'autocomplete': 'given-name'}),
+            'last_name': forms.TextInput(attrs={'autocomplete': 'family-name'}),
+            'email': forms.EmailInput(attrs={'autocomplete': 'email'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,7 +35,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = []  # No fields for now
+        fields = []  # Update this with actual profile fields as needed
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -47,7 +53,7 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         super().__init__(*args, **kwargs)
         for field_name in ['old_password', 'new_password1', 'new_password2']:
             self.fields[field_name].help_text = None
-            self.fields[field_name].widget.attrs.update({'class': 'form-control'})
+            self.fields[field_name].widget.attrs.update({'class': 'form-control', 'autocomplete': 'new-password' if 'new' in field_name else 'current-password'})
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(

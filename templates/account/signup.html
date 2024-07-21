@@ -5,11 +5,13 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="my-4">Sign Up</h2>
-    <form method="POST" action="{% url 'account_signup' %}" class="needs-validation" novalidate>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
+    <div class="form-container">
+        <h2 class="my-4">Sign Up</h2>
+        <form method="POST" action="{% url 'account_signup' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
