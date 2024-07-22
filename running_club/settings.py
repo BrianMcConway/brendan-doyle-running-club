@@ -185,6 +185,8 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
+
 HANDLER404 = 'my_app.views.custom_404_view'
 HANDLER500 = 'my_app.views.custom_500_view'
 HANDLER403 = 'my_app.views.custom_403_view'

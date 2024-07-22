@@ -329,3 +329,9 @@ main {
     background-attachment: fixed;
     z-index: -1;
 }
+
+/* Map styling */
+.map {
+    height: 500px;
+    width: 100%;
+}

@@ -10,8 +10,11 @@ def home(request):
 def about(request):
     return render(request, 'home/about.html')
 
-def classes(request):
-    return render(request, 'home/classes.html')
+def classes_view(request):
+    context = {
+        'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
+    }
+    return render(request, 'home/classes.html', context)
 
 def contact(request):
     return render(request, 'home/contact.html')
