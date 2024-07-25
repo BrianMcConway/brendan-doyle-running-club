@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ event.name }} - {{ event.date }}{% endblock %}
+
+{% block content %}
+<h1>{{ event.name }} - {{ event.date }}</h1>
+<p><strong>Distance:</strong> {{ event.get_distance_display }}</p>
+<p><strong>Location:</strong> {{ event.location }}</p>
+<p>{{ event.description }}</p>
+<a href="{% url 'events_list' %}">Back to Events List</a>
+{% endblock %}
+

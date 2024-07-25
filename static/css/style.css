@@ -335,3 +335,101 @@ main {
     height: 500px;
     width: 100%;
 }
+
+/* Event list styles */
+.events-list {
+    max-width: 800px;
+    margin: 20px auto; /* Center the list */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text within the list */
+}
+
+.events-list h1 {
+    color: #115a38;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 20px;
+}
+
+.events-list .list-group-item {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.2em;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.events-list .list-group-item a {
+    text-decoration: none;
+    color: #115a38;
+}
+
+.events-list .list-group-item a:hover {
+    color: #0d452d;
+    text-decoration: underline;
+}
+
+.events-list .list-group-item:hover {
+    background-color: #e1f4eb;
+    transform: scale(1.02);
+}
+
+/* Event detail styles */
+.event-detail {
+    max-width: 800px;
+    margin: 20px auto; /* Center the detail section */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-detail h1 {
+    color: #115a38;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 20px;
+}
+
+.event-detail p {
+    font-family: 'Kanit', sans-serif;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.event-detail a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #115a38;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.event-detail a:hover {
+    background-color: #0d452d;
+}
+
+/* Adjust padding for main content */
+main {
+    flex: 1;
+    padding-top: 80px; /* Adjust padding to avoid overlap with header */
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsive styles for events */
+@media (max-width: 768px) {
+    .events-list, .event-detail {
+        width: 90%; /* Make the list and detail section take most of the screen width */
+    }
+}
+

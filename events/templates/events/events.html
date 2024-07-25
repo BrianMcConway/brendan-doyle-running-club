@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Events - Brendan Doyle Running Club{% endblock %}
+
+{% block content %}
+<h1>Race Events</h1>
+<ul class="list-group">
+    {% for event in events %}
+        <li class="list-group-item">
+            <a href="{% url 'event_detail' event.id %}">{{ event.name }} - {{ event.date }}</a>
+            ({{ event.get_distance_display }})
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
