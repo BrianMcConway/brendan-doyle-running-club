@@ -3,11 +3,15 @@
 
 {% block title %}Classes - Brendan Doyle Running Club{% endblock %}
 
+{% block maps_script %}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&v=weekly&libraries=marker&loading=async"></script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+{% endblock %}
+
 {% block content %}
-<div id="classes" class="background-section classes-section"></div>
 <div class="section-content">
     <h2>Classes</h2>
     <p>We offer various classes for all levels, from beginners to advanced runners.</p>
-    <div id="map" class="map"></div>
+    <div id="map" style="height: 500px; width: 100%;"></div>
 </div>
 {% endblock %}

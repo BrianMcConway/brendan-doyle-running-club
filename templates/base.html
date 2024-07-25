@@ -1,94 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            {% block title %}Brendan Doyle Running Club
-            {% endblock %}
-        </title>
-        {% load static %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
-    </head>
-    <body class="d-flex flex-column min-vh-100">
-        <header class="header py-3">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h1 class="my-0">Brendan Doyle Running Club</h1>
-                    </div>
-                    <div class="col-md-6">
-                        <nav class="navbar navbar-expand-lg justify-content-end">
-                            <div class="container-fluid">
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                                    <ul class="navbar-nav">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}Brendan Doyle Running Club{% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    {% block maps_script %}{% endblock %}
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="header py-3">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="my-0">Brendan Doyle Running Club</h1>
+                </div>
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand-lg justify-content-end">
+                        <div class="container-fluid">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.path == '/classes/' %}active{% endif %}" href="{% url 'classes' %}">Classes</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+                                    </li>
+                                    {% if user.is_authenticated %}
                                         <li class="nav-item">
-                                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                                            <a class="nav-link {% if request.path == '/members/' %}active{% endif %}" href="{% url 'my_members' %}">Members Area</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="{% url 'about' %}">About</a>
+                                            <a class="nav-link {% if 'profile' in request.path %}active{% endif %}" href="{% url 'profile_detail' %}">Profile</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link {% if request.path == '/classes/' %}active{% endif %}" href="{% url 'classes' %}">Classes</a>
+                                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == '/account/login/' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link {% if request.path == '/contact/' %}active{% endif %}" href="{% url 'contact' %}">Contact</a>
+                                            <a class="nav-link {% if request.path == '/account/signup/' %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
                                         </li>
-                                        {% if user.is_authenticated %}
-                                            <li class="nav-item">
-                                                <a class="nav-link {% if request.path == '/members/' %}active{% endif %}" href="{% url 'my_members' %}">Members Area</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link {% if 'profile' in request.path %}active{% endif %}" href="{% url 'profile_detail' %}">Profile</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                                            </li>
-                                        {% else %}
-                                            <li class="nav-item">
-                                                <a class="nav-link {% if request.path == '/account/login/' %}active{% endif %}" href="{% url 'account_login' %}">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link {% if request.path == '/account/signup/' %}active{% endif %}" href="{% url 'account_signup' %}">Sign Up</a>
-                                            </li>
-                                        {% endif %}
-                                    </ul>
-                                </div>
+                                    {% endif %}
+                                </ul>
                             </div>
-                        </nav>
-                    </div>
+                        </div>
+                    </nav>
                 </div>
             </div>
-        </header>
-        <main class="flex-grow-1 container my-5"> {% block content %}{% endblock %}
-            </main>
-            <footer class="footer text-center py-3">
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/profile.php?id=100063469122895" target="_blank" rel="noopener" aria-label="Find us on Facebook (link opens in a new tab)">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a href="https://www.instagram.com/royal_canal_run_longford_" target="_blank" rel="noopener" aria-label="Find us on Instagram (link opens in a new tab)">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://x.com/brendandoylerun" target="_blank" rel="noopener" aria-label="Find us on X (link opens in a new tab)">
-                        <i class="fa-brands fa-x-twitter"></i>
-                    </a>
-                    <a href="https://www.strava.com/clubs/941049" target="_blank" rel="noopener" aria-label="Find us on Strava (link opens in a new tab)">
-                        <i class="fa-brands fa-strava"></i>
-                    </a>
-                </div>
-                <p class="footer-text">&copy; 2024 Astral Beard Productions</p>
-            </footer>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js" integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-            <script src="https://kit.fontawesome.com/df6aabc655.js" crossorigin="anonymous"></script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&callback=initMap&v=weekly&libraries=marker"></script>
-            <script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
-            <script src="{% static 'js/script.js' %}"></script>
-        </body>
-    </html>
+        </div>
+    </header>
+    <main class="flex-grow-1 container my-5">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer text-center py-3">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/profile.php?id=100063469122895" target="_blank" rel="noopener" aria-label="Find us on Facebook (link opens in a new tab)">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/royal_canal_run_longford_" target="_blank" rel="noopener" aria-label="Find us on Instagram (link opens in a new tab)">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://x.com/brendandoylerun" target="_blank" rel="noopener" aria-label="Find us on X (link opens in a new tab)">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.strava.com/clubs/941049" target="_blank" rel="noopener" aria-label="Find us on Strava (link opens in a new tab)">
+                <i class="fa-brands fa-strava"></i>
+            </a>
+        </div>
+        <p class="footer-text">&copy; 2024 Astral Beard Productions</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js" integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://kit.fontawesome.com/df6aabc655.js" crossorigin="anonymous"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
