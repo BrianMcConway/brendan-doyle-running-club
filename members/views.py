@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from allauth.account.views import SignupView, LoginView
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.contrib.auth.views import PasswordResetConfirmView
@@ -37,6 +37,10 @@ def custom_logout_view(request):
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     form_class = CustomSetPasswordForm
     template_name = 'account/password_reset_confirm.html'
+    success_url = reverse_lazy('password_reset_complete')
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
