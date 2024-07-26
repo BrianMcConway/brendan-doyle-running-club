@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
 
@@ -193,7 +193,7 @@ HANDLER404 = 'my_app.views.custom_404_view'
 HANDLER500 = 'my_app.views.custom_500_view'
 HANDLER403 = 'my_app.views.custom_403_view'
 
-# Set up email service!!!
+# Email service
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.sendgrid.net"
@@ -201,4 +201,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = os.environ.get('RUNNING_CLUB_MAIL')
-DEFAULT_FROM_EMAIL = "brianbioenergy@gmail.com"
+DEFAULT_FROM_EMAIL = "admin@brendandoylerunning.com"
