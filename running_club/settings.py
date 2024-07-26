@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django.contrib.sites',
     'cloudinary_storage',
     'cloudinary',
     'profiles',
@@ -199,5 +200,5 @@ EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "apikey"
-EMAIL_HOST_PASSWORD = os.environ.get('running_club_mail')
+EMAIL_HOST_PASSWORD = os.environ.get('RUNNING_CLUB_MAIL')
 DEFAULT_FROM_EMAIL = "brianbioenergy@gmail.com"
