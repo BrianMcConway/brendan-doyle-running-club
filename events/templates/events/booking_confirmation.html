@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Confirmation{% endblock %}
+
+{% block content %}
+<h1>Booking Confirmation</h1>
+<p>Thank you for booking! You have successfully booked the following race:</p>
+<ul>
+    <li>Race: {{ booking.race.name }}</li>
+    <li>Date: {{ booking.race.date }}</li>
+    <li>Distance: {{ booking.race.get_distance_display }}</li>
+    <li>Location: {{ booking.race.location }}</li>
+</ul>
+<p>Admin will contact you within the next 48 hours regarding payment. GET TRAINING!!!</p>
+<a href="{% url 'events_list' %}" class="btn btn-primary">Back to Events</a>
+{% endblock %}

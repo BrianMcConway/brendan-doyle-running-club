@@ -1,10 +1,7 @@
 from django.db import models
 
-# Create your models here.
-
 class RaceEvent(models.Model):
     DISTANCE_CHOICES = [
-        ('5K', '5K'),
         ('10K', '10K'),
         ('HM', 'Half Marathon'),
         ('M', 'Marathon'),
@@ -38,3 +35,13 @@ class Result(models.Model):
 
     def __str__(self):
         return f"{self.participant} - {self.finish_time}"
+
+class Booking(models.Model):
+    race = models.ForeignKey(RaceEvent, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    booking_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} booked {self.race.name} on {self.booking_date}"
