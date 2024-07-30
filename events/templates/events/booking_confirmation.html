@@ -11,6 +11,7 @@
     <li>Distance: {{ booking.race.get_distance_display }}</li>
     <li>Location: {{ booking.race.location }}</li>
 </ul>
+<p>Your booking number is: <strong>{{ booking.booking_number }}</strong></p>
 <p>Admin will contact you within the next 48 hours regarding payment. GET TRAINING!!!</p>
 <a href="{% url 'events_list' %}" class="btn btn-primary">Back to Events</a>
 {% endblock %}

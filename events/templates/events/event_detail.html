@@ -8,7 +8,7 @@
     <p><strong>Distance:</strong> {{ event.get_distance_display }}</p>
     <p><strong>Location:</strong> {{ event.location }}</p>
     <p>{{ event.description }}</p>
-    <a href="{% url 'events_list' %}" class="btn btn-secondary">Back to Events List</a>
     <a href="{% url 'book_race' event.id %}" class="btn btn-primary">Book this Race</a>
+    <a href="{% url 'events_list' %}" class="btn btn-secondary">Back to Events List</a>
 </div>
 {% endblock %}

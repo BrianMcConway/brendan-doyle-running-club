@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import RaceEvent, Booking
 from .forms import BookingForm
-
-# Create your views here.
+from django.core.mail import send_mail
+from django.conf import settings
 
 def events_view(request):
     events = RaceEvent.objects.all().order_by('date')
@@ -17,8 +17,17 @@ def book_race(request, event_id):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('booking_confirmation', booking_id=form.instance.id)
+            booking = form.save(commit=False)
+            booking.save()
+            # Send email with booking number
+            send_mail(
+                'Your Race Booking Confirmation',
+                f'Thank you for booking {booking.race.name}. Your booking number is {booking.booking_number}.',
+                settings.DEFAULT_FROM_EMAIL,
+                [booking.email],
+                fail_silently=False,
+            )
+            return redirect('booking_confirmation', booking_id=booking.id)
     else:
         form = BookingForm(initial={'race': race})
     return render(request, 'events/book_race.html', {'form': form, 'race': race})

@@ -1,3 +1,5 @@
+import random
+import string
 from django.db import models
 
 class RaceEvent(models.Model):
@@ -42,6 +44,17 @@ class Booking(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     booking_date = models.DateTimeField(auto_now_add=True)
+    booking_number = models.CharField(max_length=20, unique=True, editable=False)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} booked {self.race.name} on {self.booking_date}"
+
+    def save(self, *args, **kwargs):
+        if not self.booking_number:
+            self.booking_number = self.generate_booking_number()
+        super().save(*args, **kwargs)
+
+    def generate_booking_number(self):
+        prefix = "RCRL-25-"
+        suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        return f"{prefix}{suffix}"
