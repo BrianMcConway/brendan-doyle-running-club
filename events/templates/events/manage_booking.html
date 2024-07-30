@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Manage Booking{% endblock %}
+
+{% block content %}
+<div class="container profile-section">
+    <div class="form-container">
+        <h2 class="my-4">Manage Your Booking</h2>
+        {% if booking %}
+            <p><strong>Race:</strong> {{ booking.race.name }}</p>
+            <p><strong>Date:</strong> {{ booking.race.date }}</p>
+            <p><strong>Distance:</strong> {{ booking.race.get_distance_display }}</p>
+            <p><strong>Location:</strong> {{ booking.race.location }}</p>
+            <p><strong>Booking Number:</strong> {{ booking.booking_number }}</p>
+            <!-- Add options for CRUD operations here, such as edit or delete the booking -->
+            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-warning">Edit Booking</a>
+            <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger">Delete Booking</a>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="booking_number">Booking Number:</label>
+                    <input type="text" class="form-control" id="booking_number" name="booking_number" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Manage Booking</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

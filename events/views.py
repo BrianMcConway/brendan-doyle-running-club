@@ -35,3 +35,28 @@ def book_race(request, event_id):
 def booking_confirmation(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
     return render(request, 'events/booking_confirmation.html', {'booking': booking})
+
+def manage_booking(request):
+    if request.method == 'POST':
+        booking_number = request.POST.get('booking_number')
+        booking = get_object_or_404(Booking, booking_number=booking_number)
+        return render(request, 'events/manage_booking.html', {'booking': booking})
+    return render(request, 'events/manage_booking.html')
+
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_booking')
+    else:
+        form = BookingForm(instance=booking)
+    return render(request, 'events/edit_booking.html', {'form': form, 'booking': booking})
+
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+    if request.method == 'POST':
+        booking.delete()
+        return redirect('manage_booking')
+    return render(request, 'events/delete_booking.html', {'booking': booking})

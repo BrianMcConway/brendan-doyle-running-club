@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Delete Booking{% endblock %}
+
+{% block content %}
+<div class="container profile-section">
+    <div class="form-container">
+        <h2 class="my-4">Delete Booking</h2>
+        <p>Are you sure you want to delete your booking for {{ booking.race.name }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'manage_booking' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

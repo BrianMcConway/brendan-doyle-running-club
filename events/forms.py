@@ -1,5 +1,7 @@
 from django import forms
 from .models import Booking
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 class BookingForm(forms.ModelForm):
     class Meta:
@@ -8,7 +10,8 @@ class BookingForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(BookingForm, self).__init__(*args, **kwargs)
-        self.fields['race'].widget.attrs.update({'class': 'form-control'})
-        self.fields['first_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['last_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['email'].widget.attrs.update({'class': 'form-control'})
+        self.helper = FormHelper()
+        self.helper.form_method = 'post'
+        self.helper.add_input(Submit('submit', 'Save Booking'))
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'

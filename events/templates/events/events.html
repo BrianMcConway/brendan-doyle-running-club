@@ -3,13 +3,24 @@
 {% block title %}Events - Brendan Doyle Running Club{% endblock %}
 
 {% block content %}
-<h1>Race Events</h1>
-<ul class="list-group">
-    {% for event in events %}
-        <li class="list-group-item">
-            <a href="{% url 'event_detail' event.id %}">{{ event.name }} - {{ event.date }}</a>
-            ({{ event.get_distance_display }})
-        </li>
-    {% endfor %}
-</ul>
+<div class="container profile-section">
+    <div class="section-content events-list">
+        <h1 class="my-4">Race Events</h1>
+        <p>Please select a race distance to enter</p>
+        <p>If you have already entered a race and wish to edit your booking, please select the race you entered.</p>
+        <div class="row">
+            {% for event in events %}
+                <div class="col-6">
+                    <div class="list-group-item">
+                        <h5>{{ event.name }}</h5>
+                        <small>{{ event.date }}</small>
+                        <p>Distance: {{ event.get_distance_display }}</p>
+                        <small>Location: {{ event.location }}</small>
+                        <a href="{% url 'event_detail' event.id %}" class="btn mt-2">View Details</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}

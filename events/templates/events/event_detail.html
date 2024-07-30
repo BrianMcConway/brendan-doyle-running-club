@@ -9,6 +9,7 @@
     <p><strong>Location:</strong> {{ event.location }}</p>
     <p>{{ event.description }}</p>
     <a href="{% url 'book_race' event.id %}" class="btn btn-primary">Book this Race</a>
+    <a href="{% url 'manage_booking' %}" class="btn btn-secondary">Manage Booking</a>
     <a href="{% url 'events_list' %}" class="btn btn-secondary">Back to Events List</a>
 </div>
 {% endblock %}
