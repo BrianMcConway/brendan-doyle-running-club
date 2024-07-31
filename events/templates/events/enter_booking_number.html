@@ -6,6 +6,11 @@
 <div class="container profile-section">
     <div class="form-container">
         <h2 class="my-4">Enter Your Booking Number</h2>
+        {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+            </div>
+        {% endif %}
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
@@ -13,6 +18,7 @@
             </div>
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
+        <a href="{% url 'events_list' %}" class="btn btn-secondary mt-3">Return to Events</a>
     </div>
 </div>
 {% endblock %}

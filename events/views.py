@@ -38,10 +38,15 @@ def booking_confirmation(request, booking_id):
     return render(request, 'events/booking_confirmation.html', {'booking': booking})
 
 def enter_booking_number(request):
+    error_message = None
     if request.method == 'POST':
         booking_number = request.POST.get('booking_number')
-        return redirect('manage_booking', booking_number=booking_number)
-    return render(request, 'events/enter_booking_number.html')
+        if Booking.objects.filter(booking_number=booking_number).exists():
+            return redirect('manage_booking', booking_number=booking_number)
+        else:
+            error_message = "No booking found. Please make sure you have entered the correct booking number."
+    return render(request, 'events/enter_booking_number.html', {'error_message': error_message})
+
 
 def manage_booking(request, booking_number=None):
     booking = None
