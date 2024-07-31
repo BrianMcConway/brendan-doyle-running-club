@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
 from .models import RaceEvent, Booking
 from .forms import BookingForm
 from django.core.mail import send_mail
@@ -19,10 +20,10 @@ def book_race(request, event_id):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.save()
-            # Send email with booking number
+            # Send email with booking number and race distance
             send_mail(
                 'Your Race Booking Confirmation',
-                f'Thank you for booking {booking.race.name}. Your booking number is {booking.booking_number}.',
+                f'Thank you for booking {booking.race.name} ({booking.race.get_distance_display()}). Your booking number is {booking.booking_number}.',
                 settings.DEFAULT_FROM_EMAIL,
                 [booking.email],
                 fail_silently=False,
@@ -36,12 +37,27 @@ def booking_confirmation(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
     return render(request, 'events/booking_confirmation.html', {'booking': booking})
 
-def manage_booking(request):
+def enter_booking_number(request):
     if request.method == 'POST':
         booking_number = request.POST.get('booking_number')
-        booking = get_object_or_404(Booking, booking_number=booking_number)
-        return render(request, 'events/manage_booking.html', {'booking': booking})
-    return render(request, 'events/manage_booking.html')
+        return redirect('manage_booking', booking_number=booking_number)
+    return render(request, 'events/enter_booking_number.html')
+
+def manage_booking(request, booking_number=None):
+    booking = None
+    error_message = None
+    if request.method == 'POST':
+        booking_number = request.POST.get('booking_number')
+        try:
+            booking = Booking.objects.get(booking_number=booking_number)
+        except Booking.DoesNotExist:
+            error_message = "No booking found. Please make sure you have entered the correct booking number."
+    elif booking_number:
+        try:
+            booking = Booking.objects.get(booking_number=booking_number)
+        except Booking.DoesNotExist:
+            error_message = "No booking found. Please make sure you have entered the correct booking number."
+    return render(request, 'events/manage_booking.html', {'booking': booking, 'error_message': error_message})
 
 def edit_booking(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
@@ -49,7 +65,7 @@ def edit_booking(request, booking_id):
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
             form.save()
-            return redirect('manage_booking')
+            return redirect('edit_booking_confirmation')
     else:
         form = BookingForm(instance=booking)
     return render(request, 'events/edit_booking.html', {'form': form, 'booking': booking})
@@ -58,5 +74,11 @@ def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
     if request.method == 'POST':
         booking.delete()
-        return redirect('manage_booking')
-    return render(request, 'events/delete_booking.html', {'booking': booking})
+        return redirect('delete_booking_confirmation')
+    return render(request, 'events/confirm_delete_booking.html', {'booking': booking, 'manage_booking_url': reverse('manage_booking', args=[booking.booking_number])})
+
+def edit_booking_confirmation(request):
+    return render(request, 'events/edit_booking_confirmation.html')
+
+def delete_booking_confirmation(request):
+    return render(request, 'events/delete_booking_confirmation.html')

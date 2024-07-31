@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Enter Booking Number{% endblock %}
+
+{% block content %}
+<div class="container profile-section">
+    <div class="form-container">
+        <h2 class="my-4">Enter Your Booking Number</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" name="booking_number" class="form-control" placeholder="Enter your booking number" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -7,7 +7,7 @@ class RaceEvent(models.Model):
         ('10K', '10K'),
         ('HM', 'Half Marathon'),
         ('M', 'Marathon'),
-        ('53K', '53K Ultra Marathon'),
+        ('53K', '53K Ultra'),
     ]
 
     name = models.CharField(max_length=255, default='The Royal Canal Run Longford')
