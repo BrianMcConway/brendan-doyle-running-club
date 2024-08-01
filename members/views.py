@@ -1,14 +1,28 @@
 from django.shortcuts import redirect, render
-from allauth.account.views import SignupView, LoginView
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from allauth.account.views import SignupView, LoginView
 from django.contrib.auth.views import PasswordResetConfirmView
-from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm
+from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm, GPXFileForm
+from .models import GPXFile
 
 class MyMembersView(LoginRequiredMixin, TemplateView):
     template_name = 'members/members.html'
     login_url = '/account/login/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = GPXFileForm()
+        context['files'] = GPXFile.objects.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = GPXFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('my_members')
+        return self.get(request, *args, **kwargs)
 
 class CustomSignupView(SignupView):
     form_class = CustomSignupForm

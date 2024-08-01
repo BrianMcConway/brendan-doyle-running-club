@@ -1,6 +1,7 @@
 from django import forms
 from allauth.account.forms import LoginForm, SignupForm, SetPasswordForm
 from django.contrib.auth.forms import PasswordChangeForm
+from .models import GPXFile
 
 class CustomSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
@@ -23,3 +24,8 @@ class CustomSetPasswordForm(SetPasswordForm):
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     pass
+
+class GPXFileForm(forms.ModelForm):
+    class Meta:
+        model = GPXFile
+        fields = ['title', 'file']

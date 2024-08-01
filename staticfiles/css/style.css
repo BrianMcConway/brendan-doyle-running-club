@@ -315,7 +315,7 @@ main {
     opacity: 0.5;
 }
 
-.members-section::before,
+
 .profile-section::before {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/pete-2_a0w4rl.jpg');
     background-color: #d8e7e0;
@@ -328,6 +328,23 @@ main {
     height: 100%;
     background-size: cover;
     background-position: center top 20%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.members-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561341/canal-run-1_pf1zkg.jpg');
+    background-color: #d8e7e0;
+    opacity: 0.5;
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center top 10%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     z-index: -1;
@@ -510,5 +527,101 @@ main {
 
     .classes-map {
         min-height: 300px;
+    }
+}
+
+/* Centering the GPX File Upload and List Section */
+.gpx-file-upload, .gpx-file-list {
+    margin: 20px auto; /* Center the container */
+    max-width: 450px; 
+    width: 100%; 
+    padding: 20px;
+    background-color: #4d4d4d; 
+    opacity: 0.8;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.gpx-file-upload h3, .gpx-file-list h3 {
+    font-size: 1.25rem;
+}
+
+.gpx-file-upload form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; 
+
+.gpx-file-upload .form-group {
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left; /* Align text to the left */
+}
+
+.gpx-file-upload .form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.gpx-file-upload .form-control {
+    max-width: 100%;
+    width: calc(100% - 20px);
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    box-sizing: border-box;
+
+.gpx-file-upload .btn {
+    width: 100%;
+    max-width: 200px;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block; /* Make button a block element */
+    margin-left: auto; /* Center align button */
+    margin-right: auto; /* Center align button */
+}
+
+.gpx-file-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.gpx-file-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.gpx-file-list li a {
+    text-decoration: none;
+    color: #115a38;
+}
+
+.gpx-file-list li a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .gpx-file-upload, .gpx-file-list {
+        padding: 15px;
+    }
+
+    .gpx-file-upload .form-control, .gpx-file-upload .btn {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 769px) {
+    .gpx-file-upload, .gpx-file-list {
+        padding: 20px 40px; /* Extra padding for larger screens */
     }
 }
