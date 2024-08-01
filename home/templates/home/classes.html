@@ -8,9 +8,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="section-content">
+<div id="classes" class="background-section classes-section"></div>
+<div class="container section-content">
     <h2>Classes</h2>
     <p>We offer various classes for all levels, from beginners to advanced runners.</p>
-    <div id="map" style="height: 500px; width: 100%;"></div>
+    <div class="row">
+        <div class="col-lg-5 col-md-6 mb-4">
+            <div class="classes-list">
+                <ul>
+                    <li><strong>Where:</strong> Royal Canal, Harbour Row Carpark, Longford<br><strong>When:</strong> Tuesday, 7pm (All year)</li>
+                    <li><strong>Where:</strong> The Mall Sports Centre, Longford<br><strong>When:</strong> Wednesday, 7pm (September to May)</li>
+                    <li><strong>Where:</strong> Lanesboro Running Track, Longford<br><strong>When:</strong> Monday, 7pm (September to May)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-6 mb-4">
+            <div id="map" class="classes-map"></div>
+        </div>
+    </div>
 </div>
 {% endblock %}

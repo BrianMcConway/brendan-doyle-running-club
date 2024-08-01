@@ -27,7 +27,7 @@ body {
 }
 
 .navbar .nav-link {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -36,7 +36,7 @@ body {
 }
 
 .navbar .nav-link.active {
-    color: yellow;
+    color: #ffff00;
 }
 
 nav ul {
@@ -50,7 +50,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -98,7 +98,7 @@ main {
 /* Footer styles */
 .footer {
     background-color: #daddda;
-    color: #fff;
+    color: #ffffff;
     text-align: center;
     padding: 10px 0;
     width: 100%;
@@ -109,7 +109,7 @@ main {
 .footer-text {
     margin-bottom: 0;
     font-family: Kanit, sans-serif;
-    color: #000;
+    color: #000000;
 }
 
 /* Forgot password link styles */
@@ -125,7 +125,7 @@ main {
 }
 
 .social-icons a {
-    margin: 0 100px;
+    margin: 0 10px;
     font-size: 24px;
     text-decoration: none;
     transition: transform 0.5s ease;
@@ -156,12 +156,13 @@ main {
 
 /* Form styles */
 .form-container {
-    background-color: #4d4d4dcc; /* Slightly transparent background */
+    background-color: #4d4d4d; /* Slightly transparent background */
+    opacity: 0.8;
     padding: 10px; /* Reduced padding */
     border-radius: 10px;
     max-width: 450px; /* Reduced max-width */
     margin: 10px auto; /* Center the form container and reduce margin */
-    color: #fff;
+    color: #ffffff;
     text-align: center; /* Center text within the form */
 }
 
@@ -186,7 +187,7 @@ main {
     padding: 6px; /* Reduce padding */
     font-size: 12px; /* Reduce font size */
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
 }
 
 .btn {
@@ -202,7 +203,7 @@ main {
 .btn-primary {
     background-color: #115a38;
     border: none;
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn-primary:hover {
@@ -212,7 +213,7 @@ main {
 .btn-danger {
     background-color: #dc3545;
     border: none;
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn-danger:hover {
@@ -220,13 +221,13 @@ main {
 }
 
 .btn-secondary {
-    background-color: #777;
+    background-color: #777777;
     border: none;
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn-secondary:hover {
-    background-color: #555;
+    background-color: #555555;
 }
 
 .btn-link {
@@ -301,8 +302,8 @@ main {
     opacity: 0.5;
 }
 
-.classes-section::before {
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561340/brendan-doyle-solo_y3eeci.jpg');
+.events-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/race-finish_wuwvyn.jpg');
     background-color: #d8e7e0;
     background-position: center top 28%;
     opacity: 0.5;
@@ -314,6 +315,7 @@ main {
     opacity: 0.5;
 }
 
+.members-section::before,
 .profile-section::before {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/pete-2_a0w4rl.jpg');
     background-color: #d8e7e0;
@@ -331,20 +333,15 @@ main {
     z-index: -1;
 }
 
-/* Map styling */
-.map {
-    height: 500px;
-    width: 100%;
-}
-
 /* Event list styles */
 .events-list {
     max-width: 800px;
     margin: 20px auto; /* Center the list */
     padding: 10px;
-    background-color: #4d4d4dcc; /* Transparent background */
+    background-color: #4d4d4d; /* Transparent background */
+    opacity: 0.8;
     border-radius: 8px;
-    box-shadow: 0 2px 4px #0000001a;
+    box-shadow: 0 2px 4px #000000;
     text-align: center; /* Center text within the list */
 }
 
@@ -365,10 +362,10 @@ main {
     font-size: 1em; 
     padding: 10px; 
     margin: 10px 0; 
-    border: 1px solid #ddd;
+    border: 1px solid #dddddd;
     border-radius: 8px;
     background-color: #ffffffe6; 
-    box-shadow: 0 2px 4px #0000001a;
+    box-shadow: 0 2px 4px #000000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -383,7 +380,7 @@ main {
 .events-list .list-group-item p,
 .events-list .list-group-item small {
     font-family: 'Kanit', sans-serif;
-    color: #333;
+    color: #333333;
     margin-bottom: 5px;
     font-size: 0.9em;
 }
@@ -444,5 +441,74 @@ main {
         flex: 0 0 50%;
         max-width: 50%;
         padding: 5px;
+    }
+}
+
+/* Classes */
+.classes-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561340/brendan-doyle-solo_y3eeci.jpg');
+    background-color: #d8e7e0;
+    background-position: center top 28%;
+    opacity: 0.5;
+}
+
+/* Flexbox container for the classes section */
+.classes-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 40px; /* Space between the two boxes */
+    height: 500px; /* Ensure both boxes have the same height */
+    width: 500px;
+}
+
+/* Style for the class list and map */
+.classes-list,
+.classes-map {
+    background-color: #4d4d4d;
+    padding: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    flex: 1; /* Make both elements take up equal space */
+    box-sizing: border-box;
+    min-width: 45%; /* Ensure both boxes are the same width */
+}
+
+/* Additional styling for the class list */
+.classes-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.classes-list li {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Ensure the map fills the container */
+.classes-map {
+    height: 100%; /* Make the map container fill available height */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .classes-container {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto; /* Allow auto height for smaller screens */
+    }
+
+    .classes-list,
+    .classes-map {
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .classes-map {
+        min-height: 300px;
     }
 }

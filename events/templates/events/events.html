@@ -1,15 +1,16 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block title %}Events - Brendan Doyle Running Club{% endblock %}
 
 {% block content %}
-<div class="container profile-section">
-    <div class="section-content events-list">
+<div class="background-section events-section"></div>
+<div class="container section-content">
+    <div class="events-list">
         <h1 class="my-4">Race Events</h1>
         <p>Please select a race distance to enter:</p>
         <div class="row">
             {% for event in events %}
-                <div class="col-6 col-md-3"> <!-- Adjusted for a 2x2 grid on small screens -->
+                <div class="col-6 col-md-3">
                     <div class="list-group-item">
                         <h5>{{ event.name }}</h5>
                         <small>{{ event.date }}</small>
