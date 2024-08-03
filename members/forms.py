@@ -26,6 +26,14 @@ class CustomPasswordChangeForm(PasswordChangeForm):
     pass
 
 class GPXFileForm(forms.ModelForm):
+    file = forms.FileField(required=True)  # Add file field manually
+
     class Meta:
         model = GPXFile
-        fields = ['title', 'file']
+        fields = ['title']  # Exclude file field from model fields
+
+    def clean_file(self):
+        file = self.cleaned_data.get('file')
+        if file:
+            return file.read()
+        return None

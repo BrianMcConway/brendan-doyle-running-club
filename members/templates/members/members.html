@@ -17,7 +17,7 @@
             <li>
                 <span>{{ file.title }}</span>
                 <div class="btn-group">
-                    <a href="{{ file.file.url }}" class="btn btn-primary btn-sm" download>Download</a>
+                    <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download>Download</a>
                     <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
                     <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
                 </div>
@@ -29,7 +29,7 @@
     <!-- GPX File Upload Form -->
     <div class="gpx-file-upload">
         <h3>Upload GPX File</h3>
-        <form method="post" enctype="multipart/form-data" action="{% url 'gpxfile_add' %}">
+        <form method="post" enctype="multipart/form-data" action="{% url 'my_members' %}">
             {% csrf_token %}
             <div class="form-group">
                 <label for="id_title">Title:</label>

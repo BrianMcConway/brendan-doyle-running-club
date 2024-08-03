@@ -1,11 +1,12 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView
+from django.views.generic import TemplateView, UpdateView, DeleteView
 from allauth.account.views import SignupView, LoginView
 from django.contrib.auth.views import PasswordResetConfirmView
 from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm, GPXFileForm
 from .models import GPXFile
+from django.http import FileResponse
 
 class MyMembersView(LoginRequiredMixin, TemplateView):
     template_name = 'members/members.html'
@@ -24,12 +25,6 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
             return redirect('my_members')
         return self.get(request, *args, **kwargs)
 
-class GPXFileCreateView(LoginRequiredMixin, CreateView):
-    model = GPXFile
-    form_class = GPXFileForm
-    template_name = 'members/gpxfile_form.html'
-    success_url = reverse_lazy('my_members')
-
 class GPXFileEditView(LoginRequiredMixin, UpdateView):
     model = GPXFile
     form_class = GPXFileForm
@@ -40,6 +35,11 @@ class GPXFileDeleteView(LoginRequiredMixin, DeleteView):
     model = GPXFile
     template_name = 'members/gpxfile_confirm_delete.html'
     success_url = reverse_lazy('my_members')
+
+def download_gpxfile(request, pk):
+    gpxfile = get_object_or_404(GPXFile, pk=pk)
+    response = FileResponse(gpxfile.file.open('rb'), as_attachment=True)
+    return response
 
 class CustomSignupView(SignupView):
     form_class = CustomSignupForm
