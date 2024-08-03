@@ -9,38 +9,45 @@
     <h2 class="my-4">Members Area</h2>
     <p>Welcome to the members area. Here you can manage your profile and access club-related materials.</p>
 
-    <!-- GPX File List -->
-    <div class="gpx-file-list my-4">
-        <h3>Available GPX Files</h3>
-        <ul>
-            {% for file in files %}
-            <li>
-                <span>{{ file.title }}</span>
-                <div class="btn-group">
-                    <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download>Download</a>
-                    <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                    <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+    <!-- GPX File List and GPX File Upload Form on same Row -->
+    <div class="row">
+        <!-- GPX File List -->
+        <div class="col-lg-6 col-md-12 my-4">
+            <div class="gpx-file-list">
+                <h3>Available GPX Files</h3>
+                <ul>
+                    {% for file in files %}
+                    <li>
+                        <span>{{ file.title }}</span>
+                        <div class="btn-group">
+                            <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download>Download</a>
+                            <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+                            <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
 
-    <!-- GPX File Upload Form -->
-    <div class="gpx-file-upload">
-        <h3>Upload GPX File</h3>
-        <form method="post" enctype="multipart/form-data" action="{% url 'my_members' %}">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="id_title">Title:</label>
-                {{ form.title }}
+        <!-- GPX File Upload Form -->
+        <div class="col-lg-6 col-md-12 my-4">
+            <div class="gpx-file-upload">
+                <h3>Upload GPX File</h3>
+                <form method="post" enctype="multipart/form-data" action="{% url 'my_members' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_title">Title:</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_file">File:</label>
+                        {{ form.file }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="id_file">File:</label>
-                {{ form.file }}
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-        </form>
+        </div>
     </div>
 
     <p>Here are some running related podcasts to keep you company on those long runs.</p>
