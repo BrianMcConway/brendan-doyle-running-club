@@ -1,7 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView
 from allauth.account.views import SignupView, LoginView
 from django.contrib.auth.views import PasswordResetConfirmView
 from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm, GPXFileForm
@@ -23,6 +23,23 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
             form.save()
             return redirect('my_members')
         return self.get(request, *args, **kwargs)
+
+class GPXFileCreateView(LoginRequiredMixin, CreateView):
+    model = GPXFile
+    form_class = GPXFileForm
+    template_name = 'members/gpxfile_form.html'
+    success_url = reverse_lazy('my_members')
+
+class GPXFileEditView(LoginRequiredMixin, UpdateView):
+    model = GPXFile
+    form_class = GPXFileForm
+    template_name = 'members/gpxfile_edit.html'
+    success_url = reverse_lazy('my_members')
+
+class GPXFileDeleteView(LoginRequiredMixin, DeleteView):
+    model = GPXFile
+    template_name = 'members/gpxfile_confirm_delete.html'
+    success_url = reverse_lazy('my_members')
 
 class CustomSignupView(SignupView):
     form_class = CustomSignupForm

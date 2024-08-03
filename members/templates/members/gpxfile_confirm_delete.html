@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Delete GPX File{% endblock %}
+
+{% block content %}
+<div class="background-section members-section"></div>
+<div class="container section-content">
+    <h2 class="my-4">Delete GPX File</h2>
+    <p>Are you sure you want to delete the file "{{ object.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'my_members' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

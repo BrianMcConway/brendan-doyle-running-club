@@ -310,11 +310,22 @@ main {
 }
 
 .contact-section::before {
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/race-finish_wuwvyn.jpg');
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1722679396/contact-image_giomig.jpg');
     background-color: #d8e7e0;
     opacity: 0.5;
 }
 
+.login-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1722679395/race-start_huq4qk.jpg');
+    background-color: #d8e7e0;
+    opacity: 0.5;
+}
+
+.signup-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721556777/pete_i9k7d9.jpg');
+    background-color: #d8e7e0;
+    opacity: 0.5;
+}
 
 .profile-section::before {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/pete-2_a0w4rl.jpg');
@@ -507,7 +518,7 @@ main {
 
 /* Ensure the map fills the container */
 .classes-map {
-    height: 100%; /* Make the map container fill available height */
+    height: 100%;
 }
 
 /* Responsive design for smaller screens */
@@ -515,7 +526,7 @@ main {
     .classes-container {
         flex-direction: column;
         align-items: stretch;
-        height: auto; /* Allow auto height for smaller screens */
+        height: auto;
     }
 
     .classes-list,
@@ -532,15 +543,16 @@ main {
 
 /* Centering the GPX File Upload and List Section */
 .gpx-file-upload, .gpx-file-list {
-    margin: 20px auto; /* Center the container */
-    max-width: 450px; 
-    width: 100%; 
+    margin: 20px auto;
+    max-width: 450px;
+    width: 100%; /* Full width on smaller screens */
     padding: 20px;
     background-color: #4d4d4d; /* Slightly transparent background */
     opacity: 0.8;
     border-radius: 10px;
     color: #ffffff;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .gpx-file-upload h3, .gpx-file-list h3 {
@@ -551,28 +563,33 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%; /* Ensure the form takes full width */
 }
 
 .gpx-file-upload .form-group {
     margin-bottom: 10px;
     width: 100%;
-    text-align: left; /* Align text to the left */
-}
-
-.gpx-file-upload .form-group label {
-    display: block;
-    margin-bottom: 5px;
 }
 
 .gpx-file-upload .form-control {
     max-width: 100%;
-    width: calc(100% - 20px);
+    width: 100%;
     padding: 8px;
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #cccccc;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+}
+
+/* Adjust file input alignment */
+.gpx-file-upload .form-group input[type="file"] {
+    padding-left: 10px; /* Adjust this value to move the input right */
+}
+
+.gpx-file-upload .form-group label {
+    width: 100%; /* Ensure label takes full width */
+    display: block; /* Make label a block element */
+    text-align: left; /* Align text to the left */
+    margin-bottom: 5px; /* Add some space below label */
 }
 
 .gpx-file-upload .btn {
@@ -583,15 +600,16 @@ main {
     margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: block; /* Make button a block element */
-    margin-left: auto; /* Center align button */
-    margin-right: auto; /* Center align button */
+    display: block; /* Make the button a block element */
+    margin-left: auto; /* Center align the button */
+    margin-right: auto; /* Center align the button */
 }
 
 .gpx-file-list ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-align: left; /* Align text to the left */
 }
 
 .gpx-file-list li {
@@ -600,7 +618,6 @@ main {
     background-color: #ffffff;
     color: #000000;
     border-radius: 5px;
-    text-align: left;
 }
 
 .gpx-file-list li a {
@@ -612,6 +629,16 @@ main {
     text-decoration: underline;
 }
 
+.gpx-file-list .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.gpx-file-list .btn {
+    color: #ffffff;
+}
+
 @media (max-width: 768px) {
     .gpx-file-upload, .gpx-file-list {
         padding: 15px;
@@ -619,6 +646,11 @@ main {
 
     .gpx-file-upload .form-control, .gpx-file-upload .btn {
         font-size: 12px;
+    }
+
+    .gpx-file-list .btn-group {
+        flex-direction: column;
+        gap: 10px;
     }
 }
 
