@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'django.contrib.sites',
     'cloudinary_storage',
     'cloudinary',
     'profiles',
@@ -53,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'crispy_bootstrap5',
-    'sendgrid'
+    'sendgrid',
 ]
 
 
@@ -151,7 +150,7 @@ LOGIN_REDIRECT_URL = '/members/'
 LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_FORMS = {
     'signup': 'members.forms.CustomSignupForm',
     'login': 'members.forms.CustomLoginForm',
@@ -203,3 +202,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = os.environ.get('RUNNING_CLUB_MAIL')
 DEFAULT_FROM_EMAIL = "admin@brendandoylerunning.com"
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'account_email_verified_waiting_for_approval'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'account_email_verified_waiting_for_approval'
+
+ADMINS = [
+    ('Admin', 'admin@brendandoylerunning.com'),
+]

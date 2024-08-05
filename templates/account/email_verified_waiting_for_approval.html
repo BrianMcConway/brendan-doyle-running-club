@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Email Verified{% endblock %}
+{% block content %}
+<div class="background-section signup-section"></div>
+<div class="container section-content">
+    <h1>Email Verified</h1>
+    <p>Your email has been verified. Please wait for admin approval before you can log in.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+</div>
+{% endblock %}

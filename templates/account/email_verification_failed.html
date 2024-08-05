@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Email Verification Failed{% endblock %}
+{% block content %}
+<div class="background-section signup-section"></div>
+<div class="container section-content">
+    <h1>Email Verification Failed</h1>
+    <p>There was an issue verifying your email. Please try again or contact support for assistance.</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+</div>
+{% endblock %}

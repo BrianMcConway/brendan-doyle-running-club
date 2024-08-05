@@ -1,9 +1,10 @@
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from .models import Profile
-from .forms import ProfileForm, UserForm, CustomPasswordChangeForm
+from .forms import ProfileForm, UserForm
 from django.contrib.auth import logout
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
@@ -11,7 +12,10 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
     template_name = 'profiles/profile_detail.html'
 
     def get_object(self):
-        return get_object_or_404(Profile, user=self.request.user)
+        profile = get_object_or_404(Profile, user=self.request.user)
+        if not self.request.user.is_active:
+            raise PermissionDenied("Your account is not active.")
+        return profile
 
 class ProfileCreateView(LoginRequiredMixin, CreateView):
     model = Profile
@@ -28,6 +32,9 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         return context
 
     def form_valid(self, form):
+        if not self.request.user.is_active:
+            raise PermissionDenied("Your account is not active.")
+        
         context = self.get_context_data()
         user_form = context['user_form']
         if user_form.is_valid():
@@ -46,7 +53,10 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('profile_detail')
 
     def get_object(self):
-        return get_object_or_404(Profile, user=self.request.user)
+        profile = get_object_or_404(Profile, user=self.request.user)
+        if not self.request.user.is_active:
+            raise PermissionDenied("Your account is not active.")
+        return profile
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -57,6 +67,9 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def form_valid(self, form):
+        if not self.request.user.is_active:
+            raise PermissionDenied("Your account is not active.")
+        
         context = self.get_context_data()
         user_form = context['user_form']
         if user_form.is_valid():
@@ -72,7 +85,10 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('home')
 
     def get_object(self):
-        return get_object_or_404(Profile, user=self.request.user)
+        profile = get_object_or_404(Profile, user=self.request.user)
+        if not self.request.user.is_active:
+            raise PermissionDenied("Your account is not active.")
+        return profile
 
     def delete(self, request, *args, **kwargs):
         profile = self.get_object()

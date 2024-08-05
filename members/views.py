@@ -2,11 +2,15 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, UpdateView, DeleteView
-from allauth.account.views import SignupView, LoginView
+from allauth.account.views import SignupView, LoginView, ConfirmEmailView
 from django.contrib.auth.views import PasswordResetConfirmView
+from django.contrib.auth import logout
+from allauth.account.models import EmailConfirmationHMAC
+from django.http import FileResponse
 from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm, GPXFileForm
 from .models import GPXFile
-from django.http import FileResponse
+from django.core.mail import send_mail
+from django.conf import settings
 
 class MyMembersView(LoginRequiredMixin, TemplateView):
     template_name = 'members/members.html'
@@ -47,21 +51,42 @@ class CustomSignupView(SignupView):
     def form_valid(self, form):
         response = super().form_valid(form)
         user = self.user
-        user.is_active = True
+        user.is_active = False  # User is inactive until email confirmation
         user.save()
-        return redirect(self.get_success_url())
+
+        # Send email to admin
+        self.send_admin_notification(user)
+
+        return redirect('account_email_verification_sent')
+
+    def send_admin_notification(self, user):
+        subject = "New User Signup"
+        message = f"A new user has signed up with the username: {user.username}\nEmail: {user.email}"
+        from_email = settings.DEFAULT_FROM_EMAIL
+        recipient_list = [admin[1] for admin in settings.ADMINS]
+        send_mail(subject, message, from_email, recipient_list)
 
     def get_success_url(self):
-        return reverse('my_members')
+        return reverse('account_email_verification_sent')
 
 class CustomLoginView(LoginView):
     form_class = CustomLoginForm
+
+    def form_valid(self, form):
+        self.user = form.user
+        # Check if the email is verified
+        if not self.user.emailaddress_set.filter(verified=True).exists():
+            return redirect('account_email_verification_sent')
+        # Check if the account is active (admin approved)
+        if not self.user.is_active:
+            return redirect('account_not_verified')
+        response = super().form_valid(form)
+        return response
 
     def get_success_url(self):
         return reverse('my_members')
 
 def custom_logout_view(request):
-    from django.contrib.auth import logout
     logout(request)
     return redirect('home')
 
@@ -72,6 +97,20 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+class CustomConfirmEmailView(ConfirmEmailView):
+    def get(self, request, *args, **kwargs):
+        confirmation = self.get_object()
+        if confirmation:
+            confirmation.confirm(request)
+            # Redirect to the custom approval waiting page
+            return redirect('account_email_verified_waiting_for_approval')
+        else:
+            return redirect('account_email_verification_failed')
+
+    def get_object(self, queryset=None):
+        key = self.kwargs['key']
+        return EmailConfirmationHMAC.from_key(key)
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
