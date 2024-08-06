@@ -42,7 +42,8 @@ class GPXFileDeleteView(LoginRequiredMixin, DeleteView):
 
 def download_gpxfile(request, pk):
     gpxfile = get_object_or_404(GPXFile, pk=pk)
-    response = FileResponse(gpxfile.file.open('rb'), as_attachment=True)
+    response = FileResponse(gpxfile.file_data, as_attachment=True)
+    response['Content-Disposition'] = f'attachment; filename="{gpxfile.title}.gpx"'
     return response
 
 class CustomSignupView(SignupView):
