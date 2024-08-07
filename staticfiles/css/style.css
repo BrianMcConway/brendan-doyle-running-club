@@ -659,3 +659,19 @@ main {
         padding: 20px 40px; /* Extra padding for larger screens */
     }
 }
+
+
+/* Center the toast message and position it just below the heading */
+.toast-container {
+    position: fixed;
+    top: 5rem; /* Adjust this value to control how low the toast appears from the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1055; /* Ensure it's above other elements */
+}
+
+/* Width of the toast for better appearance */
+.toast {
+    min-width: 300px;
+    max-width: 90%;
+}

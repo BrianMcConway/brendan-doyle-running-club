@@ -11,6 +11,7 @@ from .forms import CustomSignupForm, CustomLoginForm, CustomSetPasswordForm, GPX
 from .models import GPXFile
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 
 class MyMembersView(LoginRequiredMixin, TemplateView):
     template_name = 'members/members.html'
@@ -44,6 +45,7 @@ def download_gpxfile(request, pk):
     gpxfile = get_object_or_404(GPXFile, pk=pk)
     response = FileResponse(gpxfile.file_data, as_attachment=True)
     response['Content-Disposition'] = f'attachment; filename="{gpxfile.title}.gpx"'
+    messages.success(request, "Your GPX file has been downloaded.")
     return response
 
 class CustomSignupView(SignupView):
@@ -89,6 +91,7 @@ class CustomLoginView(LoginView):
 
 def custom_logout_view(request):
     logout(request)
+    messages.success(request, "You have been successfully logged out.")
     return redirect('home')
 
 class CustomPasswordResetConfirmView(PasswordResetConfirmView):
@@ -97,6 +100,7 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
     success_url = reverse_lazy('password_reset_complete')
 
     def form_valid(self, form):
+        messages.success(self.request, "Your password has been reset successfully.")
         return super().form_valid(form)
 
 class CustomConfirmEmailView(ConfirmEmailView):
