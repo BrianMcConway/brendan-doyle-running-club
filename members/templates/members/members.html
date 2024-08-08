@@ -25,10 +25,13 @@
                     <li>
                         <span>{{ file.title }}</span>
                         <div class="btn-group">
-                            <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" onclick="setTimeout(function() { location.reload(); }, 1000);" download>Download</a>
+                            <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
+                            {% if file.uploaded_by == user %}
                             <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
                             <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                        </div>                        
+                            {% endif %}
+                        </div>
+                                        
                     </li>
                     {% endfor %}
                 </ul>

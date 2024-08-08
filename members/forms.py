@@ -32,9 +32,11 @@ class GPXFileForm(forms.ModelForm):
         model = GPXFile
         fields = ['title', 'file']
 
-    def save(self, commit=True):
+    def save(self, commit=True, user=None):
         instance = super().save(commit=False)
         instance.file_data = self.cleaned_data['file'].read()
+        if user:
+            instance.uploaded_by = user
         if commit:
             instance.save()
         return instance

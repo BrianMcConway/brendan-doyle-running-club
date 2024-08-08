@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import TemplateView, UpdateView, DeleteView
 from allauth.account.views import SignupView, LoginView, ConfirmEmailView
 from django.contrib.auth.views import PasswordResetConfirmView
@@ -20,26 +20,36 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = GPXFileForm()
-        context['files'] = GPXFile.objects.all()
+        context['files'] = GPXFile.objects.all()  # Fetch all GPX files
         return context
 
     def post(self, request, *args, **kwargs):
         form = GPXFileForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            gpx_file = form.save(commit=False)
+            gpx_file.uploaded_by = request.user
+            gpx_file.save()
             return redirect('my_members')
         return self.get(request, *args, **kwargs)
 
-class GPXFileEditView(LoginRequiredMixin, UpdateView):
+class GPXFileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = GPXFile
     form_class = GPXFileForm
     template_name = 'members/gpxfile_edit.html'
     success_url = reverse_lazy('my_members')
 
-class GPXFileDeleteView(LoginRequiredMixin, DeleteView):
+    def test_func(self):
+        gpx_file = self.get_object()
+        return self.request.user == gpx_file.uploaded_by  # Only allow edit if the user is the uploader
+
+class GPXFileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = GPXFile
     template_name = 'members/gpxfile_confirm_delete.html'
     success_url = reverse_lazy('my_members')
+
+    def test_func(self):
+        gpx_file = self.get_object()
+        return self.request.user == gpx_file.uploaded_by  # Only allow delete if the user is the uploader
 
 def download_gpxfile(request, pk):
     gpxfile = get_object_or_404(GPXFile, pk=pk)
