@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 class UserForm(forms.ModelForm):
+    """
+    Form for updating User model fields.
+    """
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
@@ -17,8 +20,12 @@ class UserForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the form, remove help text for username, and set up crispy forms helper.
+        """
         super().__init__(*args, **kwargs)
-        self.fields['username'].help_text = None  # Remove help text for username
+        self.fields['username'].help_text = None
+        
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -33,12 +40,19 @@ class UserForm(forms.ModelForm):
         )
 
 class ProfileForm(forms.ModelForm):
+    """
+    Form for updating Profile model fields.
+    """
     class Meta:
         model = Profile
-        fields = []  # Update this with actual profile fields as needed
+        fields = []
 
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the form and set up crispy forms helper.
+        """
         super().__init__(*args, **kwargs)
+        
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -49,11 +63,24 @@ class ProfileForm(forms.ModelForm):
         )
 
 class CustomPasswordChangeForm(PasswordChangeForm):
+    """
+    Form for changing user passwords.
+    """
     def __init__(self, *args, **kwargs):
+        """
+        Initialize the form, remove help texts, and set up crispy forms helper.
+        """
         super().__init__(*args, **kwargs)
+        
         for field_name in ['old_password', 'new_password1', 'new_password2']:
             self.fields[field_name].help_text = None
-            self.fields[field_name].widget.attrs.update({'class': 'form-control', 'autocomplete': 'new-password' if 'new' in field_name else 'current-password'})
+            self.fields[field_name].widget.attrs.update(
+                {
+                    'class': 'form-control', 
+                    'autocomplete': 'new-password' if 'new' in field_name else 'current-password'
+                }
+            )
+        
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(

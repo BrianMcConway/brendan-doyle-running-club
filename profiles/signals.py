@@ -5,13 +5,25 @@ from .models import Profile
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    """
+    Signal to create a Profile instance when a new User is created.
+    This signal is triggered after a User instance is saved.
+    """
     if created:
         Profile.objects.create(user=instance)
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
+    """
+    Signal to save the Profile instance when the User is saved.
+    This ensures the related Profile instance is updated whenever the User instance is updated.
+    """
     instance.profile.save()
 
 @receiver(post_delete, sender=Profile)
 def delete_user(sender, instance, **kwargs):
+    """
+    Signal to delete the User instance when the Profile is deleted.
+    This ensures that when a Profile is deleted, the associated User is also deleted.
+    """
     instance.user.delete()

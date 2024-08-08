@@ -9,6 +9,11 @@
     <h2 class="my-4">Members Area</h2>
     <p>Welcome to the members area. Here you can manage your profile and access club-related materials.</p>
 
+    <!-- Profile Button -->
+    <div class="my-4">
+        <a href="{% url 'profile_detail' %}" class="btn btn-info btn-lg">View your Profile</a>
+    </div>
+
     <!-- GPX File List and GPX File Upload Form on same Row -->
     <div class="row">
         <!-- GPX File List -->
@@ -20,10 +25,10 @@
                     <li>
                         <span>{{ file.title }}</span>
                         <div class="btn-group">
-                            <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download>Download</a>
+                            <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" onclick="setTimeout(function() { location.reload(); }, 1000);" download>Download</a>
                             <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
                             <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                        </div>
+                        </div>                        
                     </li>
                     {% endfor %}
                 </ul>

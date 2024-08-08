@@ -6,13 +6,22 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 # Register your models here.
 
 class ProfileInline(admin.StackedInline):
+    """
+    Defines an inline admin descriptor for Profile model.
+    """
     model = Profile
     can_delete = False
 
 class UserAdmin(BaseUserAdmin):
+    """
+    Extends the default UserAdmin to include Profile inline.
+    """
     inlines = (ProfileInline,)
 
     def delete_model(self, request, obj):
+        """
+        Deletes the associated Profile when a User is deleted.
+        """
         if isinstance(obj, User):
             try:
                 profile = Profile.objects.get(user=obj)
@@ -21,6 +30,8 @@ class UserAdmin(BaseUserAdmin):
                 pass
         super().delete_model(request, obj)
 
+# Unregister the original User admin and register the new User admin
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+# Register the Profile model
 admin.site.register(Profile)
