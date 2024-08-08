@@ -1,6 +1,7 @@
 from django import forms
 from allauth.account.forms import LoginForm, SignupForm, SetPasswordForm
 from django.contrib.auth.forms import PasswordChangeForm
+from django.core.exceptions import ValidationError
 from .models import GPXFile
 
 class CustomSignupForm(SignupForm):
@@ -8,6 +9,12 @@ class CustomSignupForm(SignupForm):
         super().__init__(*args, **kwargs)
         self.fields['password1'].help_text = None
         self.fields['password2'].help_text = None
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if '@' in username and '.' in username:
+            raise ValidationError("Username cannot be an email address.")
+        return username
 
 class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):

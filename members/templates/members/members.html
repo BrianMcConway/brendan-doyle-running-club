@@ -24,6 +24,8 @@
                     {% for file in files %}
                     <li>
                         <span>{{ file.title }}</span>
+                        <p>Uploaded by: {{ file.uploaded_by.username }}</p> <!-- Display username -->
+                        <!-- Alternatively, you can use {{ file.uploaded_by.email }} to display the email -->
                         <div class="btn-group">
                             <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
                             {% if file.uploaded_by == user %}
@@ -31,12 +33,12 @@
                             <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
                             {% endif %}
                         </div>
-                                        
                     </li>
                     {% endfor %}
                 </ul>
             </div>
         </div>
+        
 
         <!-- GPX File Upload Form -->
         <div class="col-lg-6 col-md-12 my-4">
