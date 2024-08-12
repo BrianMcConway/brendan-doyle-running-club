@@ -10,6 +10,16 @@ body {
     min-height: 100vh;
 }
 
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Adjust padding to avoid overlap with header */
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
 /* Header styles */
 .header {
     background-color: #115a38;
@@ -26,32 +36,106 @@ body {
     font-family: Kanit, sans-serif;
 }
 
-.navbar .nav-link {
-    color: #ffffff;
-    text-decoration: none;
+/* Navbar styles */
+.navbar {
+    background-color: #115a38;
+    width: 100%;
+    overflow-x: hidden; /* Ensure the navbar does not cause horizontal overflow */
 }
 
-.navbar .nav-link:hover {
+.offcanvas {
+    background-color: #115a38;
+    width: 100%;
+    max-width: 100%; /* Ensure the offcanvas menu fits within the viewport */
+}
+
+.offcanvas-header .btn-close {
+    filter: invert(1);
+}
+
+/* Style for the sidebar navigation */
+.offcanvas-body {
+    background-color: #4d4d4d;
+    color: #ffffff;
+    padding-left: 15px;
+    padding-right: 15px; /* Adjust the offcanvas body */
+}
+
+.offcanvas-body .nav-link {
+    color: #ffffff;
+}
+
+.offcanvas-body .nav-link:hover {
     color: #dae4da;
 }
 
-.navbar .nav-link.active {
+.offcanvas-body .nav-link.active {
     color: #ffff00;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.offcanvas-body .nav-item {
+    margin-bottom: 15px;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 50px;
+/* Navbar brand text */
+.navbar-brand {
+    color: #f8f9fa; /* off-white color */
+    text-decoration: none; /* Remove underline */
 }
 
-nav ul li a {
-    color: #ffffff;
-    text-decoration: none;
+.navbar-brand:hover {
+    color: #f8f9fa; /* Maintain off-white color on hover */
+}
+
+/* Remove focus outline on click */
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler {
+    border: none; /* Remove border */
+    padding: 0; /* Remove padding */
+    outline: none; /* Remove the default focus outline */
+}
+
+/* Custom burger menu icon */
+.animated-icon3 span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 30px;
+    background: #f8f9fa; /* off-white color */
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: all 0.25s ease-in-out;
+}
+
+.animated-icon3 span:nth-child(1) {
+    top: 0px;
+}
+
+.animated-icon3 span:nth-child(2) {
+    top: 10px;
+}
+
+.animated-icon3 span:nth-child(3) {
+    top: 20px;
+}
+
+.third-button.navbar-toggler {
+    position: relative;
+    width: 30px;
+    height: 24px;
+}
+
+.third-button.navbar-toggler .animated-icon3 {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 24px;
 }
 
 /* Main content styles */
@@ -112,11 +196,6 @@ main {
     color: #000000;
 }
 
-/* Forgot password link styles */
-#id_password_helptext a {
-    color: #e7f0ec;
-}
-
 /* Social icons styles */
 .social-icons {
     margin: 10px 0;
@@ -125,16 +204,12 @@ main {
 }
 
 .social-icons a {
-    margin: 0 10px;
+    margin: 0 20px; /* Increased spacing between icons */
     font-size: 24px;
     text-decoration: none;
-    transition: transform 0.5s ease;
 }
 
-.social-icons a:hover {
-    transform: scale(2);
-}
-
+/* Specific styles for social icons */
 .fa-facebook {
     color: #1877F2;
 }
@@ -259,21 +334,6 @@ main {
     }
 }
 
-@media (hover: none) {
-    .social-icons a {
-        transform: scale(1);
-    }
-    .social-icons a:hover {
-        transform: none;
-    }
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .social-icons a:hover {
-        transform: scale(2);
-    }
-}
-
 /* Background styles for each page */
 .background-section::before {
     content: "";
@@ -348,17 +408,6 @@ main {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561341/canal-run-1_pf1zkg.jpg');
     background-color: #d8e7e0;
     opacity: 0.5;
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center top 10%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
 }
 
 /* Event list styles */
@@ -660,7 +709,6 @@ main {
     }
 }
 
-
 /* Center the toast message and position it just below the heading */
 .toast-container {
     position: fixed;
@@ -670,8 +718,8 @@ main {
     z-index: 1055; /* Ensure it's above other elements */
 }
 
-/* Width of the toast for better appearance */
+/* Optional: Adjust the width of the toast for better appearance */
 .toast {
     min-width: 300px;
-    max-width: 90%;
+    max-width: 90%; /* Make sure it doesn't take up the full width */
 }
