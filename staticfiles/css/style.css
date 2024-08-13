@@ -10,16 +10,6 @@ body {
     min-height: 100vh;
 }
 
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 80px; /* Adjust padding to avoid overlap with header */
-    padding-bottom: 40px;
-    box-sizing: border-box;
-}
-
 /* Header styles */
 .header {
     background-color: #115a38;
@@ -29,6 +19,7 @@ main {
     top: 0;
     width: 100%;
     z-index: 1000;
+    backdrop-filter: blur(10px); /* Blur effect */
 }
 
 .header h1 {
@@ -38,24 +29,37 @@ main {
 
 /* Navbar styles */
 .navbar {
-    background-color: #115a38;
+    background: linear-gradient(135deg, #115a38 0%, #34a085 100%); /* Gradient background */
     width: 100%;
     overflow-x: hidden; /* Ensure the navbar does not cause horizontal overflow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    position: fixed; /* Make the navbar fixed */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays on top */
 }
 
 .offcanvas {
-    background-color: #115a38;
+    background-color: rgba(77, 77, 77, 0.8); /* Slightly transparent background */
     width: 100%;
     max-width: 100%; /* Ensure the offcanvas menu fits within the viewport */
+}
+
+.offcanvas-header {
+    background-color: #115a38; /* Keep the green area at the top */
 }
 
 .offcanvas-header .btn-close {
     filter: invert(1);
 }
 
+.offcanvas-header h5 {
+    color: #f8f9fa; /* Off-white color */
+}
+
 /* Style for the sidebar navigation */
 .offcanvas-body {
-    background-color: #4d4d4d;
+    background-color: rgba(77, 77, 77, 0.8); /* Match the transparency of the offcanvas */
     color: #ffffff;
     padding-left: 15px;
     padding-right: 15px; /* Adjust the offcanvas body */
@@ -63,10 +67,11 @@ main {
 
 .offcanvas-body .nav-link {
     color: #ffffff;
+    transition: color 0.3s ease; /* Smooth transition */
 }
 
 .offcanvas-body .nav-link:hover {
-    color: #dae4da;
+    color: #34a085; /* Change the color on hover */
 }
 
 .offcanvas-body .nav-link.active {
@@ -81,10 +86,11 @@ main {
 .navbar-brand {
     color: #f8f9fa; /* off-white color */
     text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease; /* Smooth transition */
 }
 
 .navbar-brand:hover {
-    color: #f8f9fa; /* Maintain off-white color on hover */
+    color: #ffff00; /* Change color on hover */
 }
 
 /* Remove focus outline on click */
@@ -138,6 +144,12 @@ main {
     height: 24px;
 }
 
+/* Hover effects for the burger menu icon */
+.third-button.navbar-toggler:hover .animated-icon3 span {
+    background: #ffff00; /* Change color on hover */
+}
+
+
 /* Main content styles */
 main {
     flex: 1;
@@ -147,6 +159,7 @@ main {
     flex-direction: column;
     align-items: center;
 }
+
 
 /* Profile details styles */
 .profile-details {
@@ -181,19 +194,21 @@ main {
 
 /* Footer styles */
 .footer {
-    background-color: #daddda;
+    background: linear-gradient(135deg, #daddda 0%, #115a38 100%);
     color: #ffffff;
     text-align: center;
-    padding: 10px 0;
+    padding: 5px 0; /* Reduced padding to lower the height */
     width: 100%;
     margin-top: auto;
     flex-shrink: 0; /* Ensure footer stays at the bottom */
+    box-shadow: 0 -2px 10px #0000001a; /* Add a slight shadow to the footer */
 }
 
 .footer-text {
     margin-bottom: 0;
     font-family: Kanit, sans-serif;
     color: #000000;
+    font-size: 12px; /* Reduced font size for copyright text */
 }
 
 /* Social icons styles */
@@ -204,9 +219,14 @@ main {
 }
 
 .social-icons a {
-    margin: 0 20px; /* Increased spacing between icons */
+    margin: 0 80px; /* Adjusted spacing between icons for laptops */
     font-size: 24px;
     text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease; /* Add a smooth transition for hover effects */
+}
+
+.social-icons a:hover {
+    transform: scale(1.2); /* Scale up the icon on hover */
 }
 
 /* Specific styles for social icons */
@@ -227,6 +247,27 @@ main {
 
 .fa-strava {
     color: #FC4C02;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 992px) {
+    .social-icons a {
+        margin: 0 40px; /* Further adjust spacing for tablet screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .social-icons a {
+        margin: 0 20px; /* Increased spacing between icons for smaller screens */
+    }
+
+    .header, .footer {
+        padding: 5px 0;
+    }
+
+    .footer-text {
+        font-size: 12px; /* Reduced font size for copyright text on smaller screens */
+    }
 }
 
 /* Form styles */
@@ -315,26 +356,12 @@ main {
     cursor: pointer;
 }
 
-/* Media queries for responsive design */
-@media (max-width: 768px) {
-    nav ul li {
-        margin-right: 15px;
-    }
-
-    .social-icons a {
-        margin: 0 10px;
-    }
-    
-    .header, .footer {
-        padding: 5px 0;
-    }
-
-    .footer-text {
-        font-size: 14px;
-    }
-}
 
 /* Background styles for each page */
+.background-section {
+    position: relative;
+}
+
 .background-section::before {
     content: "";
     position: fixed;
@@ -391,17 +418,6 @@ main {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/pete-2_a0w4rl.jpg');
     background-color: #d8e7e0;
     opacity: 0.5;
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center top 20%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: -1;
 }
 
 .members-section::before {
@@ -409,6 +425,35 @@ main {
     background-color: #d8e7e0;
     opacity: 0.5;
 }
+
+.classes-section::before {
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561340/brendan-doyle-solo_y3eeci.jpg');
+    background-color: #d8e7e0;
+    background-position: center top 28%;
+    opacity: 0.5;
+}
+
+/* About page */
+
+
+.about-container {
+    background: rgba(0, 0, 0, 0.5); /* Further transparency to match the rest of the project */
+    padding: 20px;
+    border-radius: 10px;
+    color: #d8e7e0;
+}
+
+.about-container h2, .about-container h3 {
+    color: #d8e7e0;
+    font-family: 'Kanit', sans-serif;
+}
+
+.section-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
 
 /* Event list styles */
 .events-list {
@@ -522,13 +567,6 @@ main {
 }
 
 /* Classes */
-.classes-section::before {
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561340/brendan-doyle-solo_y3eeci.jpg');
-    background-color: #d8e7e0;
-    background-position: center top 28%;
-    opacity: 0.5;
-}
-
 /* Flexbox container for the classes section */
 .classes-container {
     display: flex;
@@ -590,10 +628,10 @@ main {
     }
 }
 
-/* Centering the GPX File Upload and List Section */
+/* GPX File List and Upload Container */
 .gpx-file-upload, .gpx-file-list {
     margin: 20px auto;
-    max-width: 450px;
+    max-width: 100%;
     width: 100%; /* Full width on smaller screens */
     padding: 20px;
     background-color: #4d4d4d; /* Slightly transparent background */
@@ -604,19 +642,50 @@ main {
     box-sizing: border-box;
 }
 
-.gpx-file-upload h3, .gpx-file-list h3 {
-    font-size: 1.25rem;
+.gpx-file-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left; /* Align text to the left */
 }
 
+.gpx-file-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 5px;
+}
+
+.gpx-file-list li p {
+    margin: 0;
+}
+
+/* Center buttons in the GPX file list */
+.gpx-file-list .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gpx-file-list .btn {
+    color: #ffffff;
+    padding: 8px 16px;
+}
+
+/* GPX File Upload Form */
 .gpx-file-upload form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .gpx-file-upload .form-group {
     margin-bottom: 10px;
     width: 100%;
+    box-sizing: border-box;
 }
 
 .gpx-file-upload .form-control {
@@ -626,6 +695,13 @@ main {
     font-size: 14px;
     border-radius: 5px;
     border: 1px solid #cccccc;
+    box-sizing: border-box;
+}
+
+.gpx-file-upload input[type="file"] {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
     box-sizing: border-box;
 }
 
@@ -654,38 +730,21 @@ main {
     margin-right: auto; /* Center align the button */
 }
 
-.gpx-file-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: left; /* Align text to the left */
-}
+/* Media Queries */
+/* Reduce white space in GPX file list on tablet size */
+@media (max-width: 992px) {
+    .gpx-file-list ul {
+        padding: 0;
+        margin: 0;
+    }
 
-.gpx-file-list li {
-    margin-bottom: 10px;
-    padding: 10px;
-    background-color: #ffffff;
-    color: #000000;
-    border-radius: 5px;
-}
-
-.gpx-file-list li a {
-    text-decoration: none;
-    color: #115a38;
-}
-
-.gpx-file-list li a:hover {
-    text-decoration: underline;
-}
-
-.gpx-file-list .btn-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.gpx-file-list .btn {
-    color: #ffffff;
+    .gpx-file-list li {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 }
 
 @media (max-width: 768px) {
@@ -708,6 +767,8 @@ main {
         padding: 20px 40px; /* Extra padding for larger screens */
     }
 }
+
+
 
 /* Center the toast message and position it just below the heading */
 .toast-container {

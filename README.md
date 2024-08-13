@@ -1,116 +1,199 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Brendan Doyle Running Club
 
-Welcome Brian Mc Conway,
+## Introduction
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
-
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 14, 2024**
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**June 14, 2024,** Temporarily remove Mongo until key issue is resolved
-
-**May 28 2024:** Fix Mongo and Links installs
-
-**April 26 2024:** Update node version to 16
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+  - Welcome to the Brendan Doyle Running Club. I have designed this website for my local running club in Co. Longford, Ireland. The website provides information regarding classes, locations, events, and a contact page. The website also provides a members area where approved members can securly access downloadable training routes (.gpx), as well as upload their own favorite routes to share amongst the members. Users can also enter the annual Royal Canal Run event which has distances from 10k up to 53k Ultramarathon.
+  - This is my fourth project on the Full-Stack Developer course with the Code Institute, and focuses on Django frameworks, Bootstrap, Database Managment, Agile Methodologies, and CRUD functionality.
 
 ---
 
-Happy coding!
+## Table of Contents
+1. [Introduction](#introduction)
+2. [UX - User Experience](#ux---user-experience)
+    - [Design Inspiration](#design-inspiration)
+        - [Colour Scheme](#colour-scheme)
+        - [Font](#font)
+3. [Project Planning](#project-planning)
+    - [Strategy Plane](#strategy-plane)
+        - [Site Goals](#site-goals)
+    - [Agile Methodologies - Project Management](#agile-methodologies---project-management)
+    - [User Stories](#user-stories)
+        - [Visitor User Stories](#visitor-user-stories)
+        - [Epic - User Profile](#epic---user-profile)
+        - [Epic - Articles](#epic---articles)
+        - [Epic - Booking](#epic---booking)
+        - [Epic - Photo Gallery](#epic---photo-gallery)
+        - [Epic - Visit Us/Reviews](#epic---visit-usreviews)
+4. [Scope Plane](#scope-plane)
+5. [Structural Plane](#structural-plane)
+6. [Skeleton & Surface Planes](#skeleton--surface-planes)
+    - [Wireframes](#wireframes)
+    - [Database Schema - Entity Relationship Diagram](#database-schema---entity-relationship-diagram)
+    - [Security](#security)
+7. [Features](#features)
+    - [User View - Registered/Unregistered](#user-view---registeredunregistered)
+    - [CRUD Functionality](#crud-functionality)
+    - [Feature Showcase](#feature-showcase)
+    - [Future Features](#future-features)
+8. [Technologies & Languages Used](#technologies--languages-used)
+    - [Libraries & Frameworks](#libraries--frameworks)
+    - [Tools & Programs](#tools--programs)
+9. [Testing](#testing)
+    - [Unit Testing](#unit-testing)
+    - [Integration Testing](#integration-testing)
+    - [User Acceptance Testing](#user-acceptance-testing)
+10. [Deployment](#deployment)
+    - [Connecting to GitHub](#connecting-to-github)
+    - [Django Project Setup](#django-project-setup)
+    - [Cloudinary API](#cloudinary-api)
+    - [Elephant SQL](#elephant-sql)
+    - [Heroku Deployment](#heroku-deployment)
+    - [Clone Project](#clone-project)
+    - [Fork Project](#fork-project)
+11. [Credits](#credits)
+    - [Code](#code)
+    - [Media](#media)
+    - [Additional Reading/Tutorials/Books/Blogs](#additional-readingtutorialsbooksblogs)
+    - [Acknowledgements](#acknowledgements)
+
+---
+
+## UX - User Experience
+
+### Design Inspiration
+
+- I wanted to create a website which contained all of the information that a new visitor to the site would want to see, so I included information about the club and it's goals, where and when the classes are held, a contact form for further queries, and entry to the annual race event. The race event is for the general public, not just for club members.
+- I also wanted to create a members area where members must be approved before having access to any of the members material, primarily to the gpx file download feature. the gpx files contain routes that have been created by the club for training purposes, or saved routes from members runs. These files incorporate CRUD functionality for the uploader, but are only downloadable by other members. Once downloaded, the gpx files can be synced with other software like strava, garmin, Coros etc., and the course information can be accessed showing the distance, elevation and terrain of the run. The route can be followed in real-time on supported devices. 
+
+#### Colour Scheme
+Explain the choice of colours used in the project and how they contribute to the overall design.
+
+#### Font
+Describe the fonts used in the project and their impact on readability and aesthetics.
+
+## Project Planning
+
+### Strategy Plane
+#### Site Goals
+List the primary goals of the Brendan Doyle Running Club website.
+
+### Agile Methodologies - Project Management
+
+### User Stories
+#### Visitor User Stories
+- As a visitor I can easily view where and when the classes are being held so that I can see if they suits my location and schedule.
+
+#### Epic - Members Area
+- As a user I can register with the club so that I can access a members area that is not accessible by non-members, and subject to verification.
+- As a member I can log into my account so that I can download gpx routes in the members area.
+
+#### Epic - Members Profiles
+- As a logged-in member I can view my personal profile so that I can view, edit & delete my account details.
+
+#### Epic - Race Event Entry
+- As a user I can view events so that I can book in for a race event.
+
+#### Epic - Contact Us
+- As a user I can contact the club so that I can have any further questions answered.
+
+## Skeleton & Surface Planes
+
+### Wireframes
+Provide images or links to the wireframes created during the design phase.
+
+### Database Schema
+Include the database schema and entity relationship diagram used in the project.
+
+### Security
+Detail the security measures implemented to protect user data and ensure safe operations.
+
+## Features
+
+### User View - Registered/Unregistered
+Explain the different views and features available for registered and unregistered users.
+
+### CRUD Functionality
+Detail the Create, Read, Update, and Delete functionalities implemented in the project.
+
+### Feature Showcase
+Highlight the main features of the project with descriptions and screenshots if available.
+
+### Future Features
+List the features planned for future releases.
+
+## Technologies & Languages Used
+
+- HTML
+- CSS
+- Python
+- Javascript
+
+### Libraries, Frameworks & APIs
+
+- Django
+- Bootstrap5
+- Google Fonts
+- Google Maps
+
+### Packages
+
+- Django Allauth
+- Crispyforms
+- Crispy Bootstrap5
+- cloudinary
+- Sendgrid
+- Psycopg
+
+### Utilities
+
+- Git
+- Github
+- Heroku
+- PostgreSQL
+- Balsamiq Wireframes
+- Google Chrome Dev Tools
+- Favicon
+- Perplexity AI
+
+
+## Testing
+
+### Unit Testing
+Explain the unit testing methodologies used to ensure individual components function correctly.
+
+### Integration Testing
+Describe the integration testing processes to ensure different components work together as expected.
+
+### User Acceptance Testing
+Detail the user acceptance testing to validate the project meets user requirements.
+
+## Deployment
+
+### Connecting to GitHub
+Provide instructions for connecting to the GitHub repository.
+
+### Django Project Setup
+Explain how to set up the Django project locally.
+
+### Cloudinary API
+Describe the integration with the Cloudinary API for media storage.
+
+### Postgres SQL
+Detail the use of Elephant SQL for database management.
+
+### Heroku Deployment
+Provide steps for deploying the project on Heroku.
+
+## Credits
+
+### Code
+Acknowledge the code adaptation from other sources.
+
+### Media
+Credit the sources of images, videos, and other media used in the project.
+
+### Acknowledgements
+Thank individuals or organizations that contributed to the project.
+
+---
+
