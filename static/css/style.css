@@ -386,7 +386,7 @@ main {
 /* Styling and spacing the headings */
 .home-section h2 {
     font-size: 4rem;
-    color: #d8e7e0;
+    color: #fff;
     margin: 20px 0; /* Adjust spacing between headings */
     text-shadow: 2px 2px 5px #000000b3; /* Add shadow to make text pop */
     font-family: 'Anton', sans-serif; /* A bold and impactful font */
@@ -634,6 +634,17 @@ main {
 .classes-map {
     height: 100%;
 }
+
+.fallback-message {
+    display: none;
+    color: red;
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {

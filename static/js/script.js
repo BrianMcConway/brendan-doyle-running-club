@@ -26,6 +26,18 @@ async function initMap() {
             map: map
         });
     });
+
+    // Check if the map is visible and toggle the fallback message
+    const fallbackMessage = document.getElementById('map-fallback');
+
+    if (fallbackMessage) {
+        const mapElement = document.getElementById('map');
+        if (mapElement && mapElement.innerHTML.trim() === '') {
+            fallbackMessage.style.display = 'block';
+        } else {
+            fallbackMessage.style.display = 'none';
+        }
+    }
 }
 
 window.initMap = initMap;
@@ -38,4 +50,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         toast.show();
     });
+
+    // Ensure the script checks the map visibility on page load
+    const mapElement = document.getElementById('map');
+    const fallbackMessage = document.getElementById('map-fallback');
+
+    if (fallbackMessage) {
+        if (mapElement && mapElement.innerHTML.trim() === '') {
+            fallbackMessage.style.display = 'block';
+        } else {
+            fallbackMessage.style.display = 'none';
+        }
+    }
 });
