@@ -54,7 +54,7 @@ class GPXFileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def download_gpxfile(request, pk):
     gpxfile = get_object_or_404(GPXFile, pk=pk)
-    response = FileResponse(gpxfile.file_data, as_attachment=True)
+    response = HttpResponse(gpxfile.file_data, content_type='application/gpx+xml')
     response['Content-Disposition'] = f'attachment; filename="{gpxfile.title}.gpx"'
     messages.success(request, "Your GPX file has been downloaded.")
     return response
