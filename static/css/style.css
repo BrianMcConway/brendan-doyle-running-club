@@ -32,7 +32,7 @@ body {
     background: linear-gradient(135deg, #115a38 0%, #34a085 100%); /* Gradient background */
     width: 100%;
     overflow-x: hidden; /* Ensure the navbar does not cause horizontal overflow */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 0 4px 6px #0000001a; /* Subtle shadow */
     position: fixed; /* Make the navbar fixed */
     top: 0;
     left: 0;
@@ -40,7 +40,7 @@ body {
 }
 
 .offcanvas {
-    background-color: rgba(77, 77, 77, 0.8); /* Slightly transparent background */
+    background-color: #4d4d4dcc; /* Slightly transparent background */
     width: 100%;
     max-width: 100%; /* Ensure the offcanvas menu fits within the viewport */
 }
@@ -59,7 +59,7 @@ body {
 
 /* Style for the sidebar navigation */
 .offcanvas-body {
-    background-color: rgba(77, 77, 77, 0.8); /* Match the transparency of the offcanvas */
+    background-color: #4d4d4dcc; /* Match the transparency of the offcanvas */
     color: #ffffff;
     padding-left: 15px;
     padding-right: 15px; /* Adjust the offcanvas body */
@@ -705,6 +705,25 @@ main {
 }
 
 /* GPX File Upload Form */
+.gpx-file-upload {
+    max-width: 400px; /* Reduce max-width for the container */
+    padding: 20px;
+    background-color: #4d4d4d;
+    opacity: 0.8;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.gpx-file-upload-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure it takes the full height of the viewport */
+}
+
 .gpx-file-upload form {
     display: flex;
     flex-direction: column;
@@ -713,14 +732,24 @@ main {
     box-sizing: border-box;
 }
 
+.gpx-file-upload h3 {
+    font-size: 1.5em; /* Adjust the font size if necessary */
+    margin-bottom: 20px;
+    word-wrap: break-word; /* Ensure the text wraps within the container */
+}
+
 .gpx-file-upload .form-group {
     margin-bottom: 10px;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align the form-group content */
 }
 
-.gpx-file-upload .form-control {
-    max-width: 100%;
+.gpx-file-upload .form-control,
+.gpx-file-upload input[type="file"] {
+    max-width: 250px; /* Reduce the width of the input */
     width: 100%;
     padding: 8px;
     font-size: 14px;
@@ -730,14 +759,6 @@ main {
 }
 
 .gpx-file-upload input[type="file"] {
-    width: 100%;
-    max-width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-/* Adjust file input alignment */
-.gpx-file-upload .form-group input[type="file"] {
     padding-left: 10px; /* Adjust this value to move the input right */
 }
 
@@ -749,7 +770,6 @@ main {
 }
 
 .gpx-file-upload .btn {
-    width: 100%;
     max-width: 200px;
     padding: 8px;
     font-size: 14px;
@@ -757,8 +777,7 @@ main {
     cursor: pointer;
     transition: background-color 0.3s ease;
     display: block; /* Make the button a block element */
-    margin-left: auto; /* Center align the button */
-    margin-right: auto; /* Center align the button */
+    margin: 10px auto 0 auto; /* Center align the button */
 }
 
 /* Media Queries */
@@ -773,8 +792,8 @@ main {
         margin-bottom: 10px;
         padding: 10px;
         border-radius: 8px;
-        background-color: rgba(255, 255, 255, 0.9);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: #ffffffe6;
+        box-shadow: 0 2px 4px #0000001a;
     }
 }
 
@@ -798,6 +817,7 @@ main {
         padding: 20px 40px; /* Extra padding for larger screens */
     }
 }
+
 
 
 

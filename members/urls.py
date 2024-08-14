@@ -7,3 +7,6 @@ urlpatterns = [
     path('gpxfile/<int:pk>/delete/', GPXFileDeleteView.as_view(), name='gpxfile_delete'),
     path('gpxfile/<int:pk>/download/', download_gpxfile, name='gpxfile_download'),
 ]
+"""
+Defines URL patterns for the members application, mapping URLs to their respective view functions.
+"""

@@ -19,7 +19,6 @@ if os.path.isfile('env.py'):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -30,7 +29,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
-
 
 # Application definition
 
@@ -55,11 +53,9 @@ INSTALLED_APPS = [
     'sendgrid',
 ]
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 SITE_ID = 1
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,15 +88,12 @@ TEMPLATES = [
     },
 ]
 
-
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = 'running_club.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -134,7 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -156,7 +148,6 @@ ACCOUNT_FORMS = {
     'login': 'members.forms.CustomLoginForm',
 }
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -164,15 +155,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net',
     "https://*.herokuapp.com",
 ]
 
-CSRF_COOKIE_HTTPONLY = True # When set to True, this setting makes the CSRF cookie inaccessible to JavaScript, which enhances security.
+CSRF_COOKIE_HTTPONLY = True  # When set to True, this setting makes the CSRF cookie inaccessible to JavaScript, which enhances security.
 CSRF_COOKIE_SECURE = True  # Set to True for Production
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

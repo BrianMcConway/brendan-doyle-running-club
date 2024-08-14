@@ -7,6 +7,9 @@ from profiles.models import Profile
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
+    """
+    Create a user profile and send an email notification when a new user is created.
+    """
     if created:
         Profile.objects.get_or_create(user=instance)
         send_mail(
@@ -18,4 +21,7 @@ def create_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
+    """
+    Save the user profile after the user object is saved.
+    """
     instance.profile.save()

@@ -1,9 +1,3 @@
-from django.shortcuts import render, redirect
-from .forms import ContactForm
-from django.conf import settings
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
-
 def home(request):
     return render(request, 'home/index.html')
 
@@ -20,6 +14,9 @@ def contact(request):
     return render(request, 'home/contact.html')
 
 def contact_view(request):
+    """
+    Handle contact form submission, validate input, and send an email using SendGrid.
+    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -40,7 +37,7 @@ def contact_view(request):
                 print(response.status_code)
                 print(response.body)
                 print(response.headers)
-                return redirect('contact_success')  # Redirect to a success page or display a success message
+                return redirect('contact_success')
             except Exception as e:
                 print(e)
                 form.add_error(None, 'There was an error sending your message. Please try again later.')
