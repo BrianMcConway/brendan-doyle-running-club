@@ -10,8 +10,8 @@
         <h2 class="my-4">Members Area</h2>
         <div class="members-info">
             <p>Welcome to the members area. Here, you have access to some resources to support 
-                            your running journey. You can view and update your profile to 
-                            ensure your information is always current.</p>
+                            your running journey. You can view and update your profile to ensure your information 
+                            is always current.</p>
         </div>
 
         <!-- Profile Button -->
@@ -21,41 +21,93 @@
 
         <div class="members-info">
             <p>We offer a collection of downloadable GPX files to guide you on new running routes. 
-               The Saturday morning Recovery Long Run routes are uploaded here every Friday evening. 
-               These routes can be downloaded and opened with compatible devices.
-            </p>
+                            The <strong>Saturday Morning Recovery Long Run</strong> routes are uploaded here every Friday evening. 
+                            These routes can be downloaded and viewed with Strava, Garmin Connect, Coros, Topomaps etc. 
+                            On mobile view, you will be directed straight to your fitness app to view, then send to your 
+                            watch to follow in real-time as you run.</p>
+                            <p>
+                                Paced groups:<br>
+                                <strong>G1:</strong> 9/9.15 min mile<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.35/5.45 min km<br>
+                                <strong>G2:</strong> 10/10.15 min mile<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.10/6.20 min km<br>
+                                <strong>G3:</strong> 10.45/11 min mile<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6.40/6.50 min km<br>
+                                <strong>G4:</strong> 11.45/12 min mile<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7.20/7.35+ min km<br>
+                                <strong>G5:</strong> 8 min km+
+                            </p>
         </div>
 
-        <!-- GPX File List and GPX File Upload Form on same Row -->
         <div
             class="row">
-            <!-- GPX File List -->
+            <!-- Admin GPX File List -->
             <div class="col-lg-6 col-md-6 my-4">
                 <div class="gpx-file-list">
-                    <h3>Available GPX Files</h3>
+                    <h3>Saturday Morning Routes (7:30am)</h3>
                     <ul>
                         {% for file in files %}
-                            <li>
-                                <span>{{ file.title }}</span>
-                                <p>Uploaded by:
-                                    {{ file.uploaded_by.username }}</p>
-                                <p>Uploaded on:
-                                    {{ file.uploaded_at|date:"F j, Y" }}</p>
-                                <!-- Display upload date -->
-                                <div class="btn-group">
-                                    <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
-                                    {% if file.uploaded_by == user %}
-                                        <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                                        <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                                    {% endif %}
-                                </div>
-                            </li>
+                            {% if file.uploaded_by.is_staff %}
+                                <!-- Check if the user is an admin -->
+                                <li>
+                                    <span>{{ file.title }}</span>
+                                    <p>Uploaded by:
+                                        {{ file.uploaded_by.username }}</p>
+                                    <p>Uploaded on:
+                                        {{ file.uploaded_at|date:"F j, Y" }}</p>
+                                    <!-- Display upload date -->
+                                    <div class="btn-group">
+                                        <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
+                                        {% if file.uploaded_by == user %}
+                                            <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+                                            <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                            {% endif %}
                         {% endfor %}
                     </ul>
                 </div>
             </div>
 
-            <!-- GPX File Upload Form -->
+            <!-- Member GPX File List -->
+            <div class="col-lg-6 col-md-6 my-4">
+                <div class="gpx-file-list">
+                    <h3>Member Routes</h3>
+                    <ul>
+                        {% for file in files %}
+                            {% if not file.uploaded_by.is_staff %}
+                                <!-- Check if the user is a member -->
+                                <li>
+                                    <span>{{ file.title }}</span>
+                                    <p>Uploaded by:
+                                        {{ file.uploaded_by.username }}</p>
+                                    <p>Uploaded on:
+                                        {{ file.uploaded_at|date:"F j, Y" }}</p>
+                                    <!-- Display upload date -->
+                                    <div class="btn-group">
+                                        <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
+                                        {% if file.uploaded_by == user %}
+                                            <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+                                            <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="members-info">
+            <p>You can also upload your own favourite routes below to share with the club. Download your activity as 
+                            a GPX file and add it to Choose File, give it a description and upload for other members to 
+                            download and view.</p>
+        </div>
+
+        <!-- GPX File Upload Form -->
+        <div class="row">
             <div class="col-lg-6 col-md-6 my-4">
                 <div class="gpx-file-upload">
                     <h3>Upload GPX File</h3>
@@ -74,7 +126,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="members-info">
             <p>For those long training runs, we provide a selection of running-related podcasts 
