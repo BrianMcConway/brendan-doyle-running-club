@@ -380,6 +380,25 @@ main {
     background-color: #d8e7e0;
     background-position: center top 20%;
     opacity: 0.5;
+    background-position: 70% 10%;
+}
+
+/* Styling and spacing the headings */
+.home-section h2 {
+    font-size: 4rem;
+    color: #d8e7e0;
+    margin: 20px 0; /* Adjust spacing between headings */
+    text-shadow: 2px 2px 5px #000000b3; /* Add shadow to make text pop */
+    font-family: 'Anton', sans-serif; /* A bold and impactful font */
+}
+
+/* Specific styles for each section */
+.welcome-div h2 {
+    margin-bottom: 100px;
+}
+
+.running-for-all-div h2 {
+    margin-top: 20px;
 }
 
 .about-section::before {
@@ -462,7 +481,6 @@ main {
     z-index: 2;
     text-align: center;
 }
-
 
 /* Event list styles */
 .events-list {
