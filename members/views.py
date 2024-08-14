@@ -1,3 +1,4 @@
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -31,7 +32,6 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
             gpx_file.save()
             return redirect('my_members')
         return self.get(request, *args, **kwargs)
-
 
 class GPXFileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = GPXFile
