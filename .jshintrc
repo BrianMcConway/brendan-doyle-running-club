@@ -1,0 +1,10 @@
+{
+    "esversion": 8,
+    "globals": {
+      "google": true,
+      "bootstrap": true
+    },
+    "browser": true,
+    "devel": true
+  }
+  

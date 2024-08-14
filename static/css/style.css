@@ -236,9 +236,10 @@ main {
 
 .fa-instagram {
     background: linear-gradient(45deg, #e91a1a, #e29e3f, #833AB4, #C13584);
-    -webkit-background-clip: text;
     background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .fa-x-twitter {

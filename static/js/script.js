@@ -1,3 +1,6 @@
+/* jshint esversion: 8 */
+/* global google, bootstrap */
+
 async function initMap() {
     if (!document.getElementById('map')) {
         console.warn("Map element not found, skipping initialization.");
