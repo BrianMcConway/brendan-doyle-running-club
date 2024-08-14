@@ -415,7 +415,7 @@ main {
 }
 
 .profile-section::before {
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/pete-2_a0w4rl.jpg');
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561341/pete_dusobe.jpg');
     background-color: #d8e7e0;
     opacity: 0.5;
 }
@@ -437,7 +437,7 @@ main {
 
 
 .about-container {
-    background: rgba(0, 0, 0, 0.5); /* Further transparency to match the rest of the project */
+    background: #00000080; /* Further transparency to match the rest of the project */
     padding: 20px;
     border-radius: 10px;
     color: #d8e7e0;

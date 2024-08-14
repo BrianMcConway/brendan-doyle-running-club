@@ -415,10 +415,20 @@ main {
 }
 
 .profile-section::before {
-    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561345/pete-2_a0w4rl.jpg');
-    background-color: #d8e7e0;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561341/pete_dusobe.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     opacity: 0.5;
+    z-index: -1;
 }
+
 
 .members-section::before {
     background-image: url('https://res.cloudinary.com/dihqalmzm/image/upload/v1721561341/canal-run-1_pf1zkg.jpg');
@@ -433,11 +443,11 @@ main {
     opacity: 0.5;
 }
 
+
+
 /* About page */
-
-
 .about-container {
-    background: rgba(0, 0, 0, 0.5); /* Further transparency to match the rest of the project */
+    background: #00000080; /* Further transparency to match the rest of the project */
     padding: 20px;
     border-radius: 10px;
     color: #d8e7e0;
@@ -627,6 +637,27 @@ main {
         min-height: 300px;
     }
 }
+/*Members Area*/
+
+.members-info {
+    margin: 20px auto;
+    max-width: 100%;
+    width: 100%; /* Full width on smaller screens */
+    padding: 20px;
+    background-color: #4d4d4d; /* Slightly transparent background */
+    opacity: 0.8;
+    border-radius: 10px;
+    color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif; /* Matching font style */
+    line-height: 1.6; /* Better readability */
+}
+
+.members-intro p {
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
 
 /* GPX File List and Upload Container */
 .gpx-file-upload, .gpx-file-list {

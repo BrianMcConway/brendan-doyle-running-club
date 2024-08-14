@@ -20,7 +20,7 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = GPXFileForm()
-        context['files'] = GPXFile.objects.all()  # Fetch all GPX files
+        context['files'] = GPXFile.objects.all().order_by('-uploaded_at')  # Fetch all GPX files, ordered by upload date
         return context
 
     def post(self, request, *args, **kwargs):
@@ -31,6 +31,7 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
             gpx_file.save()
             return redirect('my_members')
         return self.get(request, *args, **kwargs)
+
 
 class GPXFileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = GPXFile

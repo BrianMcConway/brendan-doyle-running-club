@@ -1,118 +1,147 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Members Area{% endblock %}
+{% block title %}Members Area
+{% endblock %}
 
 {% block content %}
-<div class="background-section members-section"></div>
-<div class="container section-content">
-    <h2 class="my-4">Members Area</h2>
-    <p>Welcome to the members area. Here you can manage your profile and access club-related materials.</p>
+    <div class="background-section members-section"></div>
+    <div class="container section-content">
+        <h2 class="my-4">Members Area</h2>
+        <div class="members-info">
+            <p>Welcome to the members area. Here, you have access to some resources to support 
+                            your running journey. You can view and update your profile to 
+                            ensure your information is always current.</p>
+        </div>
 
-    <!-- Profile Button -->
-    <div class="my-4">
-        <a href="{% url 'profile_detail' %}" class="btn btn-info btn-lg">View your Profile</a>
-    </div>
+        <!-- Profile Button -->
+        <div class="my-4">
+            <a href="{% url 'profile_detail' %}" class="btn btn-info btn-lg">View your Profile</a>
+        </div>
 
-    <!-- GPX File List and GPX File Upload Form on same Row -->
-    <div class="row">
-        <!-- GPX File List -->
-        <div class="col-lg-6 col-md-6 my-4">
-            <div class="gpx-file-list">
-                <h3>Available GPX Files</h3>
-                <ul>
-                    {% for file in files %}
-                    <li>
-                        <span>{{ file.title }}</span>
-                        <p>Uploaded by: {{ file.uploaded_by.username }}</p> <!-- Display username -->
-                        <!-- Alternatively, you can use {{ file.uploaded_by.email }} to display the email -->
-                        <div class="btn-group">
-                            <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
-                            {% if file.uploaded_by == user %}
-                            <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                            <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
-                            {% endif %}
+        <div class="members-info">
+            <p>We offer a collection of downloadable GPX files to guide you on new running routes. 
+               The Saturday morning Recovery Long Run routes are uploaded here every Friday evening. 
+               These routes can be downloaded and opened with compatible devices.
+            </p>
+        </div>
+
+        <!-- GPX File List and GPX File Upload Form on same Row -->
+        <div
+            class="row">
+            <!-- GPX File List -->
+            <div class="col-lg-6 col-md-6 my-4">
+                <div class="gpx-file-list">
+                    <h3>Available GPX Files</h3>
+                    <ul>
+                        {% for file in files %}
+                            <li>
+                                <span>{{ file.title }}</span>
+                                <p>Uploaded by:
+                                    {{ file.uploaded_by.username }}</p>
+                                <p>Uploaded on:
+                                    {{ file.uploaded_at|date:"F j, Y" }}</p>
+                                <!-- Display upload date -->
+                                <div class="btn-group">
+                                    <a href="{% url 'gpxfile_download' file.pk %}" class="btn btn-primary btn-sm" download onclick="setTimeout(function() { location.reload(); }, 1000);">Download</a>
+                                    {% if file.uploaded_by == user %}
+                                        <a href="{% url 'gpxfile_edit' file.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+                                        <a href="{% url 'gpxfile_delete' file.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <!-- GPX File Upload Form -->
+            <div class="col-lg-6 col-md-6 my-4">
+                <div class="gpx-file-upload">
+                    <h3>Upload GPX File</h3>
+                    <form method="post" enctype="multipart/form-data" action="{% url 'my_members' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_title">Title:</label>
+                            {{ form.title }}
                         </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-
-        <!-- GPX File Upload Form -->
-        <div class="col-lg-6 col-md-6 my-4">
-            <div class="gpx-file-upload">
-                <h3>Upload GPX File</h3>
-                <form method="post" enctype="multipart/form-data" action="{% url 'my_members' %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_title">Title:</label>
-                        {{ form.title }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_file">File:</label>
-                        {{ form.file }}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <p>Here are some running related podcasts to keep you company on those long runs.</p>
-
-    <!-- Podcast Links -->
-    <div class="podcast-links">
-        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4">
-            <div class="col">
-                <div class="card card-scale">
-                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630412/choose-strong-podcast_whiqcu.jpg" class="card-img-top img-fluid" alt="Choose Strong Podcast">
-                    <div class="card-body">
-                        <a href="https://open.spotify.com/show/0b3F87c5WWeMCmrx3Uzdlv" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-scale">
-                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630415/irishman-running-abroad-podcast_w89r3g.jpg" class="card-img-top img-fluid" alt="An Irishman Abroad Podcast">
-                    <div class="card-body">
-                        <a href="https://open.spotify.com/show/1ixwgnQc2VbiqFmyiaszFz" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-scale">
-                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630411/trail-running-ireland-podcast_okbu75.jpg" class="card-img-top img-fluid" alt="Trail Running Ireland Podcast">
-                    <div class="card-body">
-                        <a href="https://open.spotify.com/show/1niEDHbGblpwAy3KtvwniI" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-scale">
-                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630417/the-fuel-better-podcast_qxcwvr.jpg" class="card-img-top img-fluid" alt="The Fuel Better Podcast">
-                    <div class="card-body">
-                        <a href="https://open.spotify.com/show/0UeDiL9TDyJ9nDSeI3CLVb" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-scale">
-                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630414/ironman-insider-podcast_dfcs4b.jpg" class="card-img-top img-fluid" alt="Ironman Insider Podcast">
-                    <div class="card-body">
-                        <a href="https://open.spotify.com/show/0jsImuZLxLni0JwOVq0dPG" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card card-scale">
-                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630411/runner_s-world-podcast_i69xmi.jpg" class="card-img-top img-fluid" alt="Runner's World Podcast">
-                    <div class="card-body">
-                        <a href="https://open.spotify.com/show/4BhyfIvCRYG2GghYZzoYib" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
-                    </div>
+                        <div class="form-group">
+                            <label for="id_file">File:</label>
+                            {{ form.file }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-{% endblock %}
+
+
+        <div class="members-info">
+            <p>For those long training runs, we provide a selection of running-related podcasts 
+                            designed to keep you motivated and inspired. From expert interviews to inspiring 
+                            stories from fellow runners, there's something for everyone. Dive into our community 
+                            events and stay connected with other club members. Whether you're seeking advice, 
+                            looking for a running buddy, or just want to share your latest achievements, this is 
+                            your space.</p>
+        </div>
+
+        <!-- Podcast Links -->
+        <div class="podcast-links">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4">
+                <div class="col">
+                    <div class="card card-scale">
+                        <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630412/choose-strong-podcast_whiqcu.jpg" class="card-img-top img-fluid" alt="Choose Strong Podcast">
+                            <div class="card-body">
+                                <a href="https://open.spotify.com/show/0b3F87c5WWeMCmrx3Uzdlv" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-scale">
+                            <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630415/irishman-running-abroad-podcast_w89r3g.jpg" class="card-img-top img-fluid" alt="An Irishman Abroad Podcast">
+                                <div class="card-body">
+                                    <a href="https://open.spotify.com/show/1ixwgnQc2VbiqFmyiaszFz" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card card-scale">
+                                <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630411/trail-running-ireland-podcast_okbu75.jpg" class="card-img-top img-fluid" alt="Trail Running Ireland Podcast">
+                                    <div class="card-body">
+                                        <a href="https://open.spotify.com/show/1niEDHbGblpwAy3KtvwniI" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card card-scale">
+                                    <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630417/the-fuel-better-podcast_qxcwvr.jpg" class="card-img-top img-fluid" alt="The Fuel Better Podcast">
+                                        <div class="card-body">
+                                            <a href="https://open.spotify.com/show/0UeDiL9TDyJ9nDSeI3CLVb" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card card-scale">
+                                        <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630414/ironman-insider-podcast_dfcs4b.jpg" class="card-img-top img-fluid" alt="Ironman Insider Podcast">
+                                            <div class="card-body">
+                                                <a href="https://open.spotify.com/show/0jsImuZLxLni0JwOVq0dPG" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card card-scale">
+                                            <img src="https://res.cloudinary.com/dihqalmzm/image/upload/v1720630411/runner_s-world-podcast_i69xmi.jpg" class="card-img-top img-fluid" alt="Runner's World Podcast">
+                                                <div class="card-body">
+                                                    <a href="https://open.spotify.com/show/4BhyfIvCRYG2GghYZzoYib" target="_blank" class="btn btn-primary btn-sm">Listen Now</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="members-info">
+                                <p>Enjoy all the features and support designed to help you achieve your running goals 
+                                                                    and make your journey enjoyable and fulfilling. Together, let's make every run a step 
+                                                                    towards a healthier, happier you.</p>
+                            </div>
+                        {% endblock %}
