@@ -496,6 +496,54 @@ main {
     text-align: center;
 }
 
+.about-image-couple {
+    width: 250px; /* Adjust size as needed */
+    height: 250px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    object-position: 70% 20%; 
+    border: 2px solid #fff; 
+    box-shadow: 0 0 10px #00000080; 
+    display: block;
+    margin: 20px auto; 
+}
+
+.about-image-bren {
+    width: 250px; 
+    height: 250px; 
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: 85% 20%; 
+    border: 2px solid #fff; 
+    box-shadow: 0 0 10px #00000080; 
+    display: block;
+    margin: 20px auto; 
+}
+
+.about-image-mad {
+    width: 250px; 
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 40% 20%; 
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #00000080;
+    display: block;
+    margin: 20px auto;
+}
+
+.about-image-club {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover; 
+    object-position: 40% 20%; 
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #00000080;
+    display: block;
+    margin: 20px auto;
+}
+
 /* Event list styles */
 .events-list {
     max-width: 800px;
