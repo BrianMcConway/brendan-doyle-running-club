@@ -30,6 +30,7 @@ urlpatterns = [
     path('members/', include('members.urls')),
     path('profiles/', include('profiles.urls')),
     path('events/', include('events.urls')),
+    path('accounts/', include('allauth.urls')),
     path('account/signup/', CustomSignupView.as_view(), name='account_signup'),
     path('account/login/', CustomLoginView.as_view(), name='account_login'),
     path('account/logout/', custom_logout_view, name='account_logout'),
@@ -80,6 +81,7 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(template_name='account/password_reset_complete.html'),
         name='password_reset_complete'
     ),
+
 ]
 
 """

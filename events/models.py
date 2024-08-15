@@ -1,6 +1,7 @@
 import random
 import string
 from django.db import models
+from django.contrib.auth.models import User  # Import the User model
 
 class RaceEvent(models.Model):
     DISTANCE_CHOICES = [
@@ -40,6 +41,7 @@ class Result(models.Model):
 
 class Booking(models.Model):
     race = models.ForeignKey(RaceEvent, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add the user field
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()

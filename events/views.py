@@ -4,6 +4,9 @@ from .models import RaceEvent, Booking
 from .forms import BookingForm
 from django.core.mail import send_mail
 from django.conf import settings
+from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 def events_view(request):
     events = RaceEvent.objects.all().order_by('date')
@@ -13,12 +16,14 @@ def event_detail(request, event_id):
     event = get_object_or_404(RaceEvent, pk=event_id)
     return render(request, 'events/event_detail.html', {'event': event})
 
+@login_required
 def book_race(request, event_id):
     race = get_object_or_404(RaceEvent, pk=event_id)
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
+            booking.user = request.user  # Assign the logged-in user
             booking.save()
             # Send email with booking number and race distance
             send_mail(
@@ -28,10 +33,45 @@ def book_race(request, event_id):
                 [booking.email],
                 fail_silently=False,
             )
+            messages.success(request, 'Booking successfully created.')
             return redirect('booking_confirmation', booking_id=booking.id)
     else:
         form = BookingForm(initial={'race': race})
     return render(request, 'events/book_race.html', {'form': form, 'race': race})
+
+@login_required
+def edit_booking(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+
+    # Ensure the booking belongs to the logged-in user
+    if booking.user != request.user:
+        messages.error(request, "You are not allowed to edit this booking.")
+        return HttpResponseForbidden("You are not allowed to edit this booking.")
+
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Booking successfully updated.')
+            return redirect('edit_booking_confirmation')
+    else:
+        form = BookingForm(instance=booking)
+    return render(request, 'events/edit_booking.html', {'form': form, 'booking': booking})
+
+@login_required
+def delete_booking(request, booking_id):
+    booking = get_object_or_404(Booking, pk=booking_id)
+
+    # Ensure the booking belongs to the logged-in user
+    if booking.user != request.user:
+        messages.error(request, "You are not allowed to delete this booking.")
+        return HttpResponseForbidden("You are not allowed to delete this booking.")
+
+    if request.method == 'POST':
+        booking.delete()
+        messages.success(request, 'Booking successfully deleted.')
+        return redirect('delete_booking_confirmation')
+    return render(request, 'events/confirm_delete_booking.html', {'booking': booking, 'manage_booking_url': reverse('manage_booking', args=[booking.booking_number])})
 
 def booking_confirmation(request, booking_id):
     booking = get_object_or_404(Booking, pk=booking_id)
@@ -47,7 +87,7 @@ def enter_booking_number(request):
             error_message = "No booking found. Please make sure you have entered the correct booking number."
     return render(request, 'events/enter_booking_number.html', {'error_message': error_message})
 
-
+@login_required
 def manage_booking(request, booking_number=None):
     booking = None
     error_message = None
@@ -63,24 +103,6 @@ def manage_booking(request, booking_number=None):
         except Booking.DoesNotExist:
             error_message = "No booking found. Please make sure you have entered the correct booking number."
     return render(request, 'events/manage_booking.html', {'booking': booking, 'error_message': error_message})
-
-def edit_booking(request, booking_id):
-    booking = get_object_or_404(Booking, pk=booking_id)
-    if request.method == 'POST':
-        form = BookingForm(request.POST, instance=booking)
-        if form.is_valid():
-            form.save()
-            return redirect('edit_booking_confirmation')
-    else:
-        form = BookingForm(instance=booking)
-    return render(request, 'events/edit_booking.html', {'form': form, 'booking': booking})
-
-def delete_booking(request, booking_id):
-    booking = get_object_or_404(Booking, pk=booking_id)
-    if request.method == 'POST':
-        booking.delete()
-        return redirect('delete_booking_confirmation')
-    return render(request, 'events/confirm_delete_booking.html', {'booking': booking, 'manage_booking_url': reverse('manage_booking', args=[booking.booking_number])})
 
 def edit_booking_confirmation(request):
     return render(request, 'events/edit_booking_confirmation.html')

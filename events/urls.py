@@ -11,5 +11,5 @@ urlpatterns = [
     path('booking/delete/<int:booking_id>/', views.delete_booking, name='delete_booking'),
     path('booking/delete/confirmation/', views.delete_booking_confirmation, name='delete_booking_confirmation'),
     path('enter-booking-number/', views.enter_booking_number, name='enter_booking_number'),
-    path('manage-booking/<str:booking_number>/', views.manage_booking, name='manage_booking'),  # Ensure this is correct
+    path('manage-booking/<str:booking_number>/', views.manage_booking, name='manage_booking'),
 ]
