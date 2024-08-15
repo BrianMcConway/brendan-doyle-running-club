@@ -1,7 +1,8 @@
 import random
 import string
 from django.db import models
-from django.contrib.auth.models import User  # Import the User model
+from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 class RaceEvent(models.Model):
     DISTANCE_CHOICES = [
@@ -21,6 +22,7 @@ class RaceEvent(models.Model):
     def __str__(self):
         return f"{self.name} {self.year} - {self.get_distance_display()}"
 
+
 class Participant(models.Model):
     event = models.ForeignKey(RaceEvent, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
@@ -31,6 +33,7 @@ class Participant(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.event}"
 
+
 class Result(models.Model):
     participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
     finish_time = models.DurationField()
@@ -39,9 +42,10 @@ class Result(models.Model):
     def __str__(self):
         return f"{self.participant} - {self.finish_time}"
 
+
 class Booking(models.Model):
     race = models.ForeignKey(RaceEvent, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Add the user field
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -54,9 +58,15 @@ class Booking(models.Model):
     def save(self, *args, **kwargs):
         if not self.booking_number:
             self.booking_number = self.generate_booking_number()
+        self.clean()
         super().save(*args, **kwargs)
 
     def generate_booking_number(self):
         prefix = "RCRL-25-"
         suffix = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         return f"{prefix}{suffix}"
+
+    def clean(self):
+        if Booking.objects.filter(user=self.user, race__date=self.race.date).exclude(id=self.id).exists():
+            raise ValidationError("You have already booked a race for this event.")
+

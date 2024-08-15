@@ -7,6 +7,7 @@ from django.conf import settings
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.exceptions import ValidationError  # Import ValidationError
 
 def events_view(request):
     events = RaceEvent.objects.all().order_by('date')
@@ -24,17 +25,20 @@ def book_race(request, event_id):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.user = request.user  # Assign the logged-in user
-            booking.save()
-            # Send email with booking number and race distance
-            send_mail(
-                'Your Race Booking Confirmation',
-                f'Thank you for booking {booking.race.name} ({booking.race.get_distance_display()}). Your booking number is {booking.booking_number}.',
-                settings.DEFAULT_FROM_EMAIL,
-                [booking.email],
-                fail_silently=False,
-            )
-            messages.success(request, 'Booking successfully created.')
-            return redirect('booking_confirmation', booking_id=booking.id)
+            try:
+                booking.save()
+                # Send email with booking number and race distance
+                send_mail(
+                    'Your Race Booking Confirmation',
+                    f'Thank you for booking {booking.race.name} ({booking.race.get_distance_display()}). Your booking number is {booking.booking_number}.',
+                    settings.DEFAULT_FROM_EMAIL,
+                    [booking.email],
+                    fail_silently=False,
+                )
+                messages.success(request, 'Booking successfully created.')
+                return redirect('booking_confirmation', booking_id=booking.id)
+            except ValidationError as e:
+                form.add_error(None, e.message)
     else:
         form = BookingForm(initial={'race': race})
     return render(request, 'events/book_race.html', {'form': form, 'race': race})

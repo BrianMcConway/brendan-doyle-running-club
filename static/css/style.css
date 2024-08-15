@@ -614,6 +614,50 @@ main {
     color: #dae4da;
 }
 
+/* Event container styles */
+.events-container {
+    max-width: 800px;
+    margin: 20px auto; /* Center the container */
+    padding: 20px;
+    background-color: #4d4d4d; /* Transparent background */
+    opacity: 0.8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px #000000;
+    color: #d8e7e0;
+    text-align: center; /* Center text within the container */
+}
+
+.events-container h1 {
+    color: #e4eee9;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 20px;
+}
+
+.events-container p {
+    font-size: 1.1em;
+    color: #e7e7e7; 
+    margin-bottom: 10px;
+}
+
+.events-container .btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #115a38;
+    color: #f9f9f9;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9em;
+}
+
+.events-container .btn:hover {
+    background-color: #0d452d;
+    color: #dae4da;
+}
+
+
 /* Responsive styles for events */
 @media (max-width: 576px) {
     .events-list .row {
