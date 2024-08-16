@@ -160,6 +160,11 @@ main {
     align-items: center;
 }
 
+#id_password_helptext a {
+    color: #FF5733; /* Change the link color */
+    text-decoration: none; /* Remove underline if you want */
+}
+
 
 /* Profile details styles */
 .profile-details {
