@@ -98,7 +98,6 @@ class CustomSignupView(SignupView):
         user.is_active = False
         user.save()
         self.send_admin_notification(user)
-        messages.success(self.request, "Your account has been created. Please verify your email.")
         return redirect('account_email_verification_sent')
 
     def send_admin_notification(self, user):
@@ -125,7 +124,6 @@ class CustomLoginView(LoginView):
         if not self.user.is_active:
             messages.error(self.request, "Your account is not activated. Please contact support.")
             return redirect('account_not_verified')
-        messages.success(self.request, "You have logged in successfully.")
         return super().form_valid(form)
 
     def get_success_url(self):
