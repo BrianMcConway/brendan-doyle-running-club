@@ -109,8 +109,16 @@ Detail the security measures implemented to protect user data and ensure safe op
 
 ## Features
 
-### User View - Registered/Unregistered
-Explain the different views and features available for registered and unregistered users.
+### User Views and Features - Non-members/Members
+- Non-members can view info about the club, classes, times and locations.
+- Non-members can visit the events page where they can view the annual club race, 
+and also natiowide race events not related to the club.
+- Non-members can send queries via the Contact page. 
+- Members can view the club GPX files & upload their own routes.
+- The members area is subject to admin verification. This ensures only club members 
+can access the route information. This is an important safety feature. It is important 
+that club members feel safe to use the uploaded routes.
+- Members have access to running/fitness related podcasts via Spotify.
 
 ### CRUD Functionality
 Detail the Create, Read, Update, and Delete functionalities implemented in the project.
@@ -119,7 +127,11 @@ Detail the Create, Read, Update, and Delete functionalities implemented in the p
 Highlight the main features of the project with descriptions and screenshots if available.
 
 ### Future Features
-List the features planned for future releases.
+- Future features would include haldling the race event booking within the club website. 
+This would involve a separate signup for race entrants. This feature would keep the race entrants
+separate from verified club members. Non-member race entrants should not have access to member related features.
+- I would include articles related to running, nutritional support, etc. I did not include this because of it being
+too close to the blog walkthrough project.
 
 ## Technologies & Languages Used
 
