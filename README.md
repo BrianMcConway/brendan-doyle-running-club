@@ -2,7 +2,7 @@
 
 ## Introduction
 
-  - Welcome to the Brendan Doyle Running Club. I have designed this website for my local running club in Co. Longford, Ireland. The website provides information regarding classes, locations, events, and a contact page. The website also provides a members area where approved members can securly access downloadable training routes (.gpx), as well as upload their own favorite routes to share amongst the members. Users can also enter the annual Royal Canal Run event which has distances from 10k up to 53k Ultramarathon.
+  - Welcome to the Brendan Doyle Running Club. I have designed this website for my local running club in Co. Longford, Ireland. The website provides information regarding classes, locations, events, and a contact page. The website also provides a members area where approved members can securly access downloadable training routes (.gpx), as well as upload their own favorite routes to share amongst the members.
   - This is my fourth project on the Full-Stack Developer course with the Code Institute, and focuses on Django frameworks, Bootstrap, Database Managment, Agile Methodologies, and CRUD functionality.
 
 ---
@@ -66,7 +66,7 @@
 - I also wanted to create a members area where members must be approved before having access to any of the members material, primarily to the gpx file download feature. the gpx files contain routes that have been created by the club for training purposes, or saved routes from members runs. These files incorporate CRUD functionality for the uploader, but are only downloadable by other members. Once downloaded, the gpx files can be synced with other software like strava, garmin, Coros etc., and the course information can be accessed showing the distance, elevation and terrain of the run. The route can be followed in real-time on supported devices. 
 
 #### Colour Scheme
-Explain the choice of colours used in the project and how they contribute to the overall design.
+My color choices 
 
 #### Font
 Describe the fonts used in the project and their impact on readability and aesthetics.
@@ -75,7 +75,7 @@ Describe the fonts used in the project and their impact on readability and aesth
 
 ### Strategy Plane
 #### Site Goals
-List the primary goals of the Brendan Doyle Running Club website.
+The primary goals of the 
 
 ### Agile Methodologies - Project Management
 
