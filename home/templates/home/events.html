@@ -20,24 +20,10 @@
                 Brendan Doyle Running Club's race offers a fantastic opportunity to push your limits and achieve your 
                 personal best.
             </p>
+            <a href="https://www.popupraces.ie/race/royal-canal-run-longford-2024/" class="btn btn-primary mt-3" target="_blank" rel="noopener noreferrer">
+                Visit Race Site
+            </a>
         </div>
-        <p>Please select a race distance to enter:</p>
-        <div class="row">
-            {% for event in events %}
-                <div class="col-6 col-md-3">
-                    <div class="list-group-item">
-                        <h5>{{ event.name }}</h5>
-                        <small>{{ event.date }}</small>
-                        <p>Distance: {{ event.get_distance_display }}</p>
-                        <small>Location: {{ event.location }}</small>
-                        <a href="{% url 'event_detail' event.id %}" class="btn mt-2">View Details</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <p>If you have already entered a race and wish to manage your booking, please click the button below:</p>
-        <a href="{% url 'enter_booking_number' %}" class="btn btn-primary mt-2">Manage Booking</a>
     </div>
 </div>
 {% endblock %}
-

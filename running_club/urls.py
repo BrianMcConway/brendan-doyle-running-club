@@ -29,7 +29,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('members/', include('members.urls')),
     path('profiles/', include('profiles.urls')),
-    path('events/', include('events.urls')),
     path('accounts/', include('allauth.urls')),
     path('account/signup/', CustomSignupView.as_view(), name='account_signup'),
     path('account/login/', CustomLoginView.as_view(), name='account_login'),

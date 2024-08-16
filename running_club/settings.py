@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'profiles',
     'members',
     'home',
-    'events',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

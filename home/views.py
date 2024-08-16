@@ -5,36 +5,21 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
 def home(request):
-    """
-    Render the home page.
-    """
     return render(request, 'home/index.html')
 
 def about(request):
-    """
-    Render the about page.
-    """
     return render(request, 'home/about.html')
 
 def classes_view(request):
-    """
-    Render the classes page with Google Maps API key in context.
-    """
     context = {
         'google_maps_api_key': settings.GOOGLE_MAPS_API_KEY,
     }
     return render(request, 'home/classes.html', context)
 
 def contact(request):
-    """
-    Render the contact page.
-    """
     return render(request, 'home/contact.html')
 
 def contact_view(request):
-    """
-    Handle contact form submission, validate input, and send an email using SendGrid.
-    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -69,7 +54,10 @@ def contact_view(request):
     return render(request, 'home/contact.html', {'form': form})
 
 def contact_success_view(request):
-    """
-    Render the contact success page.
-    """
     return render(request, 'home/contact_success.html')
+
+def events_view(request):
+    """
+    Render the events page.
+    """
+    return render(request, 'home/events.html')
