@@ -3,6 +3,7 @@ from .forms import ContactForm
 from django.conf import settings
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.contrib import messages
 
 def home(request):
     return render(request, 'home/index.html')
@@ -16,8 +17,16 @@ def classes_view(request):
     }
     return render(request, 'home/classes.html', context)
 
+def events_view(request):
+    """
+    Render the events page.
+    """
+    return render(request, 'home/events.html')
+
 def contact(request):
     return render(request, 'home/contact.html')
+
+from django.contrib import messages
 
 def contact_view(request):
     if request.method == 'POST':
@@ -42,22 +51,22 @@ def contact_view(request):
             )
             try:
                 response = sg.send(mail)
-                print(response.status_code)
-                print(response.body)
-                print(response.headers)
+                if response.status_code == 202:  # 202 is the status code for success in SendGrid
+                    messages.success(request, 'Your message has been sent successfully.')
+                else:
+                    messages.warning(request, 'There was an issue sending your message. Please try again.')
                 return redirect('contact_success')
             except Exception as e:
                 print(e)
                 form.add_error(None, 'There was an error sending your message. Please try again later.')
+                messages.error(request, 'There was an error sending your message. Please try again later.')
     else:
         form = ContactForm()
+
     return render(request, 'home/contact.html', {'form': form})
+
 
 def contact_success_view(request):
     return render(request, 'home/contact_success.html')
 
-def events_view(request):
-    """
-    Render the events page.
-    """
-    return render(request, 'home/events.html')
+

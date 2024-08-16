@@ -6,6 +6,7 @@ from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
 from .models import Profile
 from .forms import ProfileForm, UserForm
 from django.contrib.auth import logout
+from django.contrib import messages
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     """
@@ -60,8 +61,10 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
             self.object.user = self.request.user
             user_form.save()
             self.object.save()
+            messages.success(self.request, 'Profile successfully created!')
             return redirect(self.get_success_url())
         else:
+            messages.error(self.request, 'There was an error creating your profile.')
             return self.form_invalid(form)
 
 
@@ -108,8 +111,10 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         if user_form.is_valid():
             user_form.save()
             form.save()
+            messages.success(self.request, 'Profile successfully updated!')
             return redirect(self.get_success_url())
         else:
+            messages.error(self.request, 'There was an error updating your profile.')
             return self.form_invalid(form)
 
 
@@ -136,7 +141,7 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
         Deletes the profile and logs out the user.
         """
         profile = self.get_object()
-        user = profile.user
         profile.delete()
+        messages.success(self.request, 'Profile successfully deleted.')
         logout(request)
         return redirect(self.success_url)

@@ -33,7 +33,10 @@ class MyMembersView(LoginRequiredMixin, TemplateView):
             gpx_file = form.save(commit=False)
             gpx_file.uploaded_by = request.user
             gpx_file.save()
+            messages.success(request, "GPX file uploaded successfully.")
             return redirect('my_members')
+        else:
+            messages.error(request, "There was an error uploading the GPX file.")
         return self.get(request, *args, **kwargs)
 
 class GPXFileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -49,6 +52,14 @@ class GPXFileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         gpx_file = self.get_object()
         return self.request.user == gpx_file.uploaded_by
 
+    def form_valid(self, form):
+        messages.success(self.request, "GPX file updated successfully.")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, "There was an error updating the GPX file.")
+        return super().form_invalid(form)
+
 class GPXFileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """
     View to delete a GPX file if the user is the uploader.
@@ -60,6 +71,10 @@ class GPXFileDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         gpx_file = self.get_object()
         return self.request.user == gpx_file.uploaded_by
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, "GPX file deleted successfully.")
+        return super().delete(request, *args, **kwargs)
 
 def download_gpxfile(request, pk):
     """
@@ -83,6 +98,7 @@ class CustomSignupView(SignupView):
         user.is_active = False
         user.save()
         self.send_admin_notification(user)
+        messages.success(self.request, "Your account has been created. Please verify your email.")
         return redirect('account_email_verification_sent')
 
     def send_admin_notification(self, user):
@@ -104,11 +120,13 @@ class CustomLoginView(LoginView):
     def form_valid(self, form):
         self.user = form.user
         if not self.user.emailaddress_set.filter(verified=True).exists():
+            messages.warning(self.request, "Please verify your email before logging in.")
             return redirect('account_email_verification_sent')
         if not self.user.is_active:
+            messages.error(self.request, "Your account is not activated. Please contact support.")
             return redirect('account_not_verified')
-        response = super().form_valid(form)
-        return response
+        messages.success(self.request, "You have logged in successfully.")
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('my_members')
@@ -141,8 +159,10 @@ class CustomConfirmEmailView(ConfirmEmailView):
         confirmation = self.get_object()
         if confirmation:
             confirmation.confirm(request)
+            messages.success(request, "Your email has been confirmed. Please wait for account activation.")
             return redirect('account_email_verified_waiting_for_approval')
         else:
+            messages.error(request, "Email confirmation failed. Please try again.")
             return redirect('account_email_verification_failed')
 
     def get_object(self, queryset=None):
@@ -153,16 +173,19 @@ def custom_404_view(request, exception):
     """
     Custom view to handle 404 errors.
     """
+    messages.error(request, "The page you are looking for could not be found.")
     return render(request, '404.html', status=404)
 
 def custom_500_view(request):
     """
     Custom view to handle 500 errors.
     """
+    messages.error(request, "An internal server error occurred.")
     return render(request, '500.html', status=500)
 
 def custom_403_view(request, exception):
     """
     Custom view to handle 403 errors.
     """
+    messages.error(request, "You do not have permission to view this page.")
     return render(request, '403.html', status=403)

@@ -484,7 +484,7 @@ main {
 
 /* About page */
 .about-container {
-    background: #00000080; /* Further transparency to match the rest of the project */
+    background: #00000080;
     padding: 20px;
     border-radius: 10px;
     color: #d8e7e0;
@@ -561,107 +561,11 @@ main {
     text-align: center; /* Center text within the list */
 }
 
-.events-list h1 {
-    color: #e4eee9;
-    font-family: 'Oswald', sans-serif;
-    margin-bottom: 20px;
-}
-
 .events-list p {
     font-size: 1.1em;
     color: #e7e7e7; 
     margin-bottom: 10px;
 }
-
-.events-list .list-group-item {
-    font-family: 'Kanit', sans-serif;
-    font-size: 1em; 
-    padding: 10px; 
-    margin: 10px 0; 
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    background-color: #ffffffe6; 
-    box-shadow: 0 2px 4px #000000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.events-list .list-group-item h5 {
-    color: #115a38;
-    font-family: 'Oswald', sans-serif;
-    margin-bottom: 10px;
-}
-
-.events-list .list-group-item p,
-.events-list .list-group-item small {
-    font-family: 'Kanit', sans-serif;
-    color: #333333;
-    margin-bottom: 5px;
-    font-size: 0.9em;
-}
-
-.events-list .list-group-item a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #115a38;
-    color: #f9f9f9;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    font-family: 'Kanit', sans-serif;
-    font-size: 0.9em;
-}
-
-.events-list .list-group-item a:hover {
-    background-color: #0d452d;
-    color: #dae4da;
-}
-
-/* Event container styles */
-.events-container {
-    max-width: 800px;
-    margin: 20px auto; /* Center the container */
-    padding: 20px;
-    background-color: #4d4d4d; /* Transparent background */
-    opacity: 0.8;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px #000000;
-    color: #d8e7e0;
-    text-align: center; /* Center text within the container */
-}
-
-.events-container h1 {
-    color: #e4eee9;
-    font-family: 'Oswald', sans-serif;
-    margin-bottom: 20px;
-}
-
-.events-container p {
-    font-size: 1.1em;
-    color: #e7e7e7; 
-    margin-bottom: 10px;
-}
-
-.events-container .btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background-color: #115a38;
-    color: #f9f9f9;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    font-family: 'Kanit', sans-serif;
-    font-size: 0.9em;
-}
-
-.events-container .btn:hover {
-    background-color: #0d452d;
-    color: #dae4da;
-}
-
 
 /* Responsive styles for events */
 @media (max-width: 576px) {
@@ -670,38 +574,18 @@ main {
         flex-wrap: wrap;
     }
 
-    .events-list .col-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 5px;
-    }
-
-    .events-list .list-group-item {
-        margin-bottom: 10px;
-        padding: 10px;
-    }
-
-    .events-list .list-group-item h5 {
-        font-size: 1em;
-    }
-
-    .events-list .list-group-item p,
-    .events-list .list-group-item small {
-        font-size: 0.8em;
-    }
-
-    .events-list .list-group-item a {
-        padding: 6px 12px;
-        font-size: 0.8em;
-    }
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
-    .events-list .col-6 {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 5px;
-    }
+/* Contact Pages*/
+.contact-text {
+    color: #eaeee5e6;
+}
+
+.contact-container {
+    background: #00000080;
+    padding: 20px;
+    border-radius: 10px;
+    color: #d8e7e0;
 }
 
 /* Classes */
@@ -952,9 +836,6 @@ main {
         padding: 20px 40px; /* Extra padding for larger screens */
     }
 }
-
-
-
 
 /* Center the toast message and position it just below the heading */
 .toast-container {
