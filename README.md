@@ -5,8 +5,8 @@
 
 ## Introduction
 
-  - Welcome to the Brendan Doyle Running Club. I have designed this website for my local running club in Co. Longford, Ireland. The website provides information regarding classes, locations, events, and a contact page. The website also provides a members area where approved members can securely access downloadable training routes (.gpx), as well as upload their own favorite routes to share amongst the members.
-  - This is my fourth project on the Full-Stack Developer course with the Code Institute, and focuses on Django frameworks, Bootstrap, Database Managment, Agile Methodologies, and CRUD functionality.
+  - Welcome to the Brendan Doyle Running Club. I have designed this website for my local running club in Co. Longford, Ireland. The website provides information regarding classes, locations, events, and a contact page. The website also provides a members area where approved members can securely access downloadable training routes (.gpx), as well as upload their own favorite routes to share among the members.
+  - This is my fourth project on the Full-Stack Developer course with the Code Institute, and focuses on Django frameworks, Bootstrap, Database Management, Agile Methodologies, and CRUD functionality.
 
   [Click here to visit Brendan Doyle Running Club](https://brendan-doyle-running-club-aa4c157b1933.herokuapp.com/)
 
@@ -81,7 +81,7 @@ The Brendan Doyle Running Club website was designed with a clear focus on provid
 
 ## Color Choices
 
-The design of the Brendan Doyle Running Club website features a modern and energetic aesthetic, with a color scheme centered around deep green (`#115a38`), off-white (`#f8f9fa`), and vibrant accents like yellow (`#ffff00`) and orange-red (`#FF5733`). The green syncronizes with nature, making it ideal for a running club, while the accent colors draw attention to key elements without overwhelming the design.
+The design of the Brendan Doyle Running Club website features a modern and energetic aesthetic, with a color scheme centered around deep green (`#115a38`), off-white (`#f8f9fa`), and vibrant accents like yellow (`#ffff00`) and orange-red (`#FF5733`). The green synchronizes with nature, making it ideal for a running club, while the accent colors draw attention to key elements without overwhelming the design.
 
 ### Font Choices
 
@@ -268,7 +268,7 @@ The application is served over HTTPS, ensuring that all data transmitted between
 ### User Views and Features - Non-members/Members
 - Non-members can view info about the club, classes, times and locations.
 - Non-members can visit the events page where they can view the annual club race, 
-and also natiowide race events not related to the club.
+and also nationwide race events not related to the club.
 - Non-members can send queries via the Contact page. 
 - Members can view the club GPX files & upload their own routes.
 - The members area is subject to admin verification. This ensures only club members 
@@ -283,7 +283,7 @@ Detail the Create, Read, Update, and Delete functionalities implemented in the p
 Highlight the main features of the project with descriptions and screenshots if available.
 
 ### Future Features
-- Future features would include haldling the race event booking within the club website. 
+- Future features would include handling the race event booking within the club website. 
 This would involve a separate signup for race entrants. This feature would keep the race entrants
 separate from verified club members. Non-member race entrants should not have access to member related features.
 - I would include articles related to running, nutritional support, etc. I did not include this because of it being
@@ -294,7 +294,7 @@ too close to the blog walkthrough project.
 - HTML
 - CSS
 - Python
-- Javascript
+- JavaScript
 
 ### Libraries, Frameworks & APIs
 
@@ -701,7 +701,7 @@ To deploy your Django project on Heroku, follow these steps:
    While working on static files, I accidentally added critical files to `.gitignore`, which caused them to be excluded from commits. This mistake led to untidy and incomplete commits. After reverting these changes, I had to clean up the commit history to maintain a professional repository.
 
 4. **Heroku Deployment Forms Bug**  
-   A bug arose during Heroku deployment where forms were not rendering correctly. Clearing the cache resolved this issue. A special thanks to Kamil for the guidance on this matter!
+   A bug arose during Heroku deployment where forms were not rendering correctly. Clearing the cache resolved this issue.
 
 5. **Stylesheet Not Connecting Due to Missing collectstatic**  
    I encountered an issue where stylesheet changes were not reflected after deployment. This was due to not running `collectstatic` to gather the latest CSS changes. Running this command resolved the issue.
@@ -727,7 +727,7 @@ To deploy your Django project on Heroku, follow these steps:
 
 ### Code Inspiration
 
-**During this project I relied on the following YouTube videod for guidance with my issues:**
+**During this project I relied on the following YouTube videos for guidance with my issues:**
 
 - [Python Django application walkthrough tutorial for Google maps](https://www.youtube.com/watch?v=wCn8WND-JpU&t=8s)
 - [Style Django Forms With Bootstrap - Django Blog #5](https://www.youtube.com/watch?v=6-XXvUENY_8)
