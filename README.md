@@ -87,8 +87,6 @@ Certainly! Here's a functioning Table of Contents with links to the relevant hea
 
 ## UX - User Experience
 
-Certainly! Here's a more structured and polished version:
-
 ---
 
 ### Design Inspiration
@@ -98,8 +96,6 @@ The Brendan Doyle Running Club website was designed with a clear focus on provid
 - **Comprehensive Club Information**: The website offers detailed insights into the club’s goals, class schedules, and locations, making it easy for newcomers to understand what the club is about and how to get involved.
 - **Contact and Event Entry**: A user-friendly contact form is available for visitors to reach out with queries, and there’s also an option to register for the annual race event, which is open to the general public.
 - **Exclusive Members Area**: To add value for club members, the site features a dedicated members area. Access to this area is restricted and requires approval. The highlight here is the ability to download GPX files, which are routes created by the club or saved by members during their runs. These files support CRUD functionality for the uploader and can be synced with popular platforms like Strava, Garmin, and Coros. This enables members to access detailed course information, including distance, elevation, and terrain, and follow the route in real-time on compatible devices.
-
-This design ensures that both public visitors and club members have a rich and engaging experience tailored to their needs.
 
 ---
 
@@ -113,8 +109,6 @@ The font choices are selected to balance readability with a modern feel:
 
 - **Kanit** is the primary font, offering clean, structured text that’s easy to read across devices.
 - **Anton** is used for bold headings, adding impact and strength to the design.
-
-This combination of colors and fonts creates a visually appealing, user-friendly website that reflects the active spirit of the club.
 
 ---
 
@@ -705,9 +699,6 @@ To deploy your Django project on Heroku, follow these steps:
 6. **Finalize Deployment**:
    - Ensure `DEBUG` is set to `False` in your settings before final deployment.
    - After a successful deployment, `DISABLE_COLLECTSTATIC` and `PORT:8000` can be removed from the Config Vars.
-
-
-Here's a polished version of the text:
 
 ---
 
