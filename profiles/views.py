@@ -8,6 +8,7 @@ from .forms import ProfileForm, UserForm
 from django.contrib.auth import logout
 from django.contrib import messages
 
+
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     """
     View for displaying the profile details of the logged-in user.
@@ -22,7 +23,9 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
         """
         profile = get_object_or_404(Profile, user=self.request.user)
         if not self.request.user.is_active:
-            raise PermissionDenied("Your account is not active.")
+            raise PermissionDenied(
+                "Your account is not active."
+            )
         return profile
 
 
@@ -41,7 +44,9 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         """
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['user_form'] = UserForm(self.request.POST, instance=self.request.user)
+            context['user_form'] = UserForm(
+                self.request.POST, instance=self.request.user
+            )
         else:
             context['user_form'] = UserForm(instance=self.request.user)
         return context
@@ -52,7 +57,9 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
         If both forms are valid, saves the profile and user data.
         """
         if not self.request.user.is_active:
-            raise PermissionDenied("Your account is not active.")
+            raise PermissionDenied(
+                "Your account is not active."
+            )
 
         context = self.get_context_data()
         user_form = context['user_form']
@@ -61,10 +68,14 @@ class ProfileCreateView(LoginRequiredMixin, CreateView):
             self.object.user = self.request.user
             user_form.save()
             self.object.save()
-            messages.success(self.request, 'Profile successfully created!')
+            messages.success(
+                self.request, 'Profile successfully created!'
+            )
             return redirect(self.get_success_url())
         else:
-            messages.error(self.request, 'There was an error creating your profile.')
+            messages.error(
+                self.request, 'There was an error creating your profile.'
+            )
             return self.form_invalid(form)
 
 
@@ -84,7 +95,9 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         """
         profile = get_object_or_404(Profile, user=self.request.user)
         if not self.request.user.is_active:
-            raise PermissionDenied("Your account is not active.")
+            raise PermissionDenied(
+                "Your account is not active."
+            )
         return profile
 
     def get_context_data(self, **kwargs):
@@ -93,7 +106,9 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         """
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['user_form'] = UserForm(self.request.POST, instance=self.request.user)
+            context['user_form'] = UserForm(
+                self.request.POST, instance=self.request.user
+            )
         else:
             context['user_form'] = UserForm(instance=self.request.user)
         return context
@@ -104,17 +119,23 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         If both forms are valid, saves the profile and user data.
         """
         if not self.request.user.is_active:
-            raise PermissionDenied("Your account is not active.")
+            raise PermissionDenied(
+                "Your account is not active."
+            )
 
         context = self.get_context_data()
         user_form = context['user_form']
         if user_form.is_valid():
             user_form.save()
             form.save()
-            messages.success(self.request, 'Profile successfully updated!')
+            messages.success(
+                self.request, 'Profile successfully updated!'
+            )
             return redirect(self.get_success_url())
         else:
-            messages.error(self.request, 'There was an error updating your profile.')
+            messages.error(
+                self.request, 'There was an error updating your profile.'
+            )
             return self.form_invalid(form)
 
 
@@ -133,7 +154,9 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
         """
         profile = get_object_or_404(Profile, user=self.request.user)
         if not self.request.user.is_active:
-            raise PermissionDenied("Your account is not active.")
+            raise PermissionDenied(
+                "Your account is not active."
+            )
         return profile
 
     def delete(self, request, *args, **kwargs):

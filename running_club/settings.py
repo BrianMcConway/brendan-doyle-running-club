@@ -1,6 +1,5 @@
 """
 Django settings for running_club project.
-
 """
 
 from pathlib import Path
@@ -9,18 +8,18 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net','.herokuapp.com',]
+ALLOWED_HOSTS = [
+    '8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net',
+    '.herokuapp.com',
+]
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -92,16 +91,20 @@ DATABASES = {
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator',
     },
 ]
 
@@ -130,8 +133,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-brianmcconw-brendandoyl-6erdwlly20g.ws.codeinstitute-ide.net',
-    "https://*.herokuapp.com",
+    'https://8000-brianmcconw-brendandoyl-6erdwlly20g.'
+    'ws.codeinstitute-ide.net',
+    'https://*.herokuapp.com',
 ]
 
 CSRF_COOKIE_HTTPONLY = True
@@ -154,7 +158,7 @@ HANDLER404 = 'my_app.views.custom_404_view'
 HANDLER500 = 'my_app.views.custom_500_view'
 HANDLER403 = 'my_app.views.custom_403_view'
 
-# Email service
+# Email Services
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587
@@ -162,8 +166,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "apikey"
 EMAIL_HOST_PASSWORD = os.environ.get('RUNNING_CLUB_MAIL')
 DEFAULT_FROM_EMAIL = "admin@brendandoylerunning.com"
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'account_email_verified_waiting_for_approval'
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = 'account_email_verified_waiting_for_approval'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = (
+    'account_email_verified_waiting_for_approval'
+)
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = (
+    'account_email_verified_waiting_for_approval'
+)
 ADMINS = [
     ('Admin', 'admin@brendandoylerunning.com'),
 ]

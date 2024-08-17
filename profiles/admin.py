@@ -3,12 +3,14 @@ from .models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
+
 class ProfileInline(admin.StackedInline):
     """
     Defines an inline admin descriptor for Profile model.
     """
     model = Profile
     can_delete = False
+
 
 class UserAdmin(BaseUserAdmin):
     """
@@ -27,6 +29,7 @@ class UserAdmin(BaseUserAdmin):
             except Profile.DoesNotExist:
                 pass
         super().delete_model(request, obj)
+
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

@@ -2,6 +2,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
+
 class ContactForm(forms.Form):
     """
     ContactForm class that defines a form for user contact information.
@@ -11,14 +12,29 @@ class ContactForm(forms.Form):
     name = forms.CharField(
         max_length=100,
         label='Your Name',
-        widget=forms.TextInput(attrs={'autocomplete': 'name', 'class': 'form-control'})
+        widget=forms.TextInput(
+            attrs={
+                'autocomplete': 'name',
+                'class': 'form-control'
+            }
+        )
     )
     email = forms.EmailField(
         label='Your Email',
-        widget=forms.EmailInput(attrs={'autocomplete': 'email', 'class': 'form-control'})
+        widget=forms.EmailInput(
+            attrs={
+                'autocomplete': 'email',
+                'class': 'form-control'
+            }
+        )
     )
     message = forms.CharField(
-        widget=forms.Textarea(attrs={'autocomplete': 'off', 'class': 'form-control'}),
+        widget=forms.Textarea(
+            attrs={
+                'autocomplete': 'off',
+                'class': 'form-control'
+            }
+        ),
         label='Your Message'
     )
 

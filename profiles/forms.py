@@ -5,6 +5,7 @@ from crispy_forms.layout import Layout, Submit, Field, Div
 from django.contrib.auth.models import User
 from .models import Profile
 
+
 class UserForm(forms.ModelForm):
     """
     Form for updating User model fields.
@@ -13,19 +14,28 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
         widgets = {
-            'username': forms.TextInput(attrs={'autocomplete': 'username'}),
-            'first_name': forms.TextInput(attrs={'autocomplete': 'given-name'}),
-            'last_name': forms.TextInput(attrs={'autocomplete': 'family-name'}),
-            'email': forms.EmailInput(attrs={'autocomplete': 'email'}),
+            'username': forms.TextInput(
+                attrs={'autocomplete': 'username'}
+            ),
+            'first_name': forms.TextInput(
+                attrs={'autocomplete': 'given-name'}
+            ),
+            'last_name': forms.TextInput(
+                attrs={'autocomplete': 'family-name'}
+            ),
+            'email': forms.EmailInput(
+                attrs={'autocomplete': 'email'}
+            ),
         }
 
     def __init__(self, *args, **kwargs):
         """
-        Initialize the form, remove help text for username, and set up crispy forms helper.
+        Initialize the form, remove help text for username,
+        and set up crispy forms helper.
         """
         super().__init__(*args, **kwargs)
         self.fields['username'].help_text = None
-        
+
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -38,6 +48,7 @@ class UserForm(forms.ModelForm):
                 css_class='form-group'
             )
         )
+
 
 class ProfileForm(forms.ModelForm):
     """
@@ -52,7 +63,7 @@ class ProfileForm(forms.ModelForm):
         Initialize the form and set up crispy forms helper.
         """
         super().__init__(*args, **kwargs)
-        
+
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -61,6 +72,7 @@ class ProfileForm(forms.ModelForm):
                 css_class='form-group'
             )
         )
+
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     """
@@ -71,16 +83,19 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         Initialize the form, remove help texts, and set up crispy forms helper.
         """
         super().__init__(*args, **kwargs)
-        
+
         for field_name in ['old_password', 'new_password1', 'new_password2']:
             self.fields[field_name].help_text = None
             self.fields[field_name].widget.attrs.update(
                 {
-                    'class': 'form-control', 
-                    'autocomplete': 'new-password' if 'new' in field_name else 'current-password'
+                    'class': 'form-control',
+                    'autocomplete': (
+                        'new-password' if 'new' in field_name
+                        else 'current-password'
+                    )
                 }
             )
-        
+
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
@@ -88,7 +103,8 @@ class CustomPasswordChangeForm(PasswordChangeForm):
                 Field('old_password', css_class='form-control'),
                 Field('new_password1', css_class='form-control'),
                 Field('new_password2', css_class='form-control'),
-                Submit('change_password', 'Change Password', css_class='btn btn-primary'),
+                Submit('change_password', 'Change Password',
+                       css_class='btn btn-primary'),
                 css_class='form-group'
             )
         )

@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
+
 class MembersConfig(AppConfig):
     """
     Configuration class for the 'members' app.

@@ -1,7 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Profile(models.Model):
+
     """
     Model representing a user profile.
     Each profile is linked to a single User object.

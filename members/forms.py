@@ -4,6 +4,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
 from .models import GPXFile
 
+
 class CustomSignupForm(SignupForm):
     """
     Custom signup form to modify password help text and validate username.
@@ -22,6 +23,7 @@ class CustomSignupForm(SignupForm):
             raise ValidationError("Username cannot be an email address.")
         return username
 
+
 class CustomLoginForm(LoginForm):
     """
     Custom login form to remove the 'remember' field.
@@ -38,17 +40,20 @@ class CustomLoginForm(LoginForm):
         self.cleaned_data['remember'] = False
         return super().login(request, redirect_url)
 
+
 class CustomSetPasswordForm(SetPasswordForm):
     """
     Custom set password form.
     """
     pass
 
+
 class CustomPasswordChangeForm(PasswordChangeForm):
     """
     Custom password change form.
     """
     pass
+
 
 class GPXFileForm(forms.ModelForm):
     """

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
 class GPXFile(models.Model):
     """
     Model representing a GPX file uploaded by a user.
