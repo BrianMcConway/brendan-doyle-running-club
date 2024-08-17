@@ -13,26 +13,6 @@
 
   [Admin access](https://brendan-doyle-running-club-aa4c157b1933.herokuapp.com/admin/login/?next=/admin/)
 
-
----
-
-Certainly! Here's a functioning Table of Contents with links to the relevant headings in your README:
-
----
-
-# Brendan Doyle Running Club
-
-<img src="docs/images/responsive.jpg" alt="App device responsiveness" width="1000"/>
-
-## Introduction
-
-- Welcome to the Brendan Doyle Running Club. I have designed this website for my local running club in Co. Longford, Ireland. The website provides information regarding classes, locations, events, and a contact page. The website also provides a members area where approved members can securely access downloadable training routes (.gpx), as well as upload their own favorite routes to share amongst the members.
-- This is my fourth project on the Full-Stack Developer course with the Code Institute, and focuses on Django frameworks, Bootstrap, Database Management, Agile Methodologies, and CRUD functionality.
-
-[Click here to visit Brendan Doyle Running Club](https://brendan-doyle-running-club-aa4c157b1933.herokuapp.com/)
-
-[Admin access](https://brendan-doyle-running-club-aa4c157b1933.herokuapp.com/admin/login/?next=/admin/)
-
 ---
 
 ## Table of Contents
