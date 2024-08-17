@@ -85,9 +85,6 @@ Certainly! Here's a functioning Table of Contents with links to the relevant hea
 
 ---
 
-This Table of Contents includes links to all the relevant sections of your README. Clicking on any of the items will take the reader directly to that section of the document.
----
-
 ## UX - User Experience
 
 Certainly! Here's a more structured and polished version:
@@ -769,7 +766,7 @@ Here's a polished version of the text:
 - [Password Reset Email Using SendGrid SMTP | Django](https://www.youtube.com/watch?v=xyUIhluXF_Y)
 - [Sending emails using Sendgrid with Python](https://www.youtube.com/watch?v=PU-K34Ar1sY)
 
-**I also used the following websites for guidange:**
+**I also used the following websites for guidance:**
 - [Stack Overflow](https://stackoverflow.com/)
 - [Django documentation](https://docs.djangoproject.com/en/5.1/)
 - [OpenAI's ChatGPT](https://chatgpt.com/)
