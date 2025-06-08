@@ -755,7 +755,6 @@ I would like to extend my gratitude to:
 - My mentor, Rohit.
 - Tutor Support for their assistance throughout the project.
 - Brendan Doyle Running, for granting permission to design their club website.
-- My Wife, for putting up with the stress and late nights, pretending to listen to me constantly ramble on about things I barely understand myself, basically for her 100% support through the course so far. 
 - Everybody who tested my project at different stages of production, gave feedback, encouragement, and helped in any way.
 
 --- 
